@@ -21,7 +21,7 @@ namespace BleakwindBuffet.Data.Entrees
         private bool cheddar        = true;
 
         /// <summary>
-        /// Gets and sets if broccoli should be added.
+        /// Whether broccoli should be added.
         /// </summary>
         public bool Broccoli
         {
@@ -36,7 +36,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets and sets if mushrooms should be added.
+        /// Whether mushrooms should be added.
         /// </summary>
         public bool Mushrooms
         {
@@ -51,7 +51,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets and sets if tomato should be added.
+        /// Whether tomato should be added.
         /// </summary>
         public bool Tomato
         {
@@ -66,7 +66,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets and sets if cheddar should be added.
+        /// Whether cheddar should be added.
         /// </summary>
         public bool Cheddar
         {
@@ -81,7 +81,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets the price of the entree.
+        /// The price of the entree.
         /// </summary>
         public double Price
         {
@@ -92,7 +92,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets the calories of the entree.
+        /// The calories of the entre.
         /// </summary>
         public uint Calories
         {
@@ -103,7 +103,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets the list of special instructions.
+        /// Special instructions for how to prepare the drink.
         /// </summary>
         public List<string> SpecialInstructions
         {

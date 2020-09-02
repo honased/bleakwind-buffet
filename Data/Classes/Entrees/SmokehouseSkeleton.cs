@@ -21,7 +21,7 @@ namespace BleakwindBuffet.Data.Entrees
         private bool pancake        = true;
 
         /// <summary>
-        /// Gets and sets if sausage Links should be added.
+        /// Whether sausage Links should be added.
         /// </summary>
         public bool SausageLink
         {
@@ -36,7 +36,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets and sets if the egg should be added.
+        /// Whether the egg should be added.
         /// </summary>
         public bool Egg
         {
@@ -51,7 +51,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets and sets if hash browns should be added.
+        /// Whether hash browns should be added.
         /// </summary>
         public bool HashBrowns
         {
@@ -66,7 +66,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets and sets if pancakes should be added.
+        /// Whether pancakes should be added.
         /// </summary>
         public bool Pancake
         {
@@ -81,7 +81,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets the price of the entree.
+        /// The price of the entree.
         /// </summary>
         public double Price
         {
@@ -92,7 +92,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets the calories of the entree.
+        /// The calories of the entre.
         /// </summary>
         public uint Calories
         {
@@ -103,7 +103,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets the list of special instructions.
+        /// Special instructions for how to prepare the drink.
         /// </summary>
         public List<string> SpecialInstructions
         {

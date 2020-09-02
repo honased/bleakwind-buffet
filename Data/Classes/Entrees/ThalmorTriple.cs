@@ -27,7 +27,7 @@ namespace BleakwindBuffet.Data.Entrees
         private bool egg        = true;
 
         /// <summary>
-        /// Gets and sets if the bun should be added.
+        /// Whether the bun should be added.
         /// </summary>
         public bool Bun
         {
@@ -42,7 +42,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets and sets if ketchup should be added.
+        /// Whether ketchup should be added.
         /// </summary>
         public bool Ketchup
         {
@@ -57,7 +57,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets and sets if mustard should be added.
+        /// Whether mustard should be added.
         /// </summary>
         public bool Mustard
         {
@@ -72,7 +72,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets and sets if pickles should be added.
+        /// Whether pickles should be added.
         /// </summary>
         public bool Pickle
         {
@@ -87,7 +87,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets and sets if cheese should be added.
+        /// Whether cheese should be added.
         /// </summary>
         public bool Cheese
         {
@@ -102,7 +102,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets and sets if tomato should be added.
+        /// Whether tomato should be added.
         /// </summary>
         public bool Tomato
         {
@@ -117,7 +117,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets and sets if lettuce should be added.
+        /// Whether lettuce should be added.
         /// </summary>
         public bool Lettuce
         {
@@ -132,7 +132,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets and sets if mayo should be added.
+        /// Whether mayo should be added.
         /// </summary>
         public bool Mayo
         {
@@ -147,7 +147,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets and sets if bacon should be added.
+        /// Whether bacon should be added.
         /// </summary>
         public bool Bacon
         {
@@ -162,7 +162,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets and sets if the egg should be added.
+        /// Whether the egg should be added.
         /// </summary>
         public bool Egg
         {
@@ -177,7 +177,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets the price of the entree.
+        /// The price of the entree.
         /// </summary>
         public double Price
         {
@@ -188,7 +188,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets the calories of the entree.
+        /// The calories of the entre.
         /// </summary>
         public uint Calories
         {
@@ -199,7 +199,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets the list of special instructions.
+        /// Special instructions for how to prepare the drink.
         /// </summary>
         public List<string> SpecialInstructions
         {

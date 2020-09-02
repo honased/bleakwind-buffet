@@ -22,7 +22,7 @@ namespace BleakwindBuffet.Data.Drinks
         private Size size           = Size.Small;
 
         /// <summary>
-        /// Gets and sets if ice should be added.
+        /// Whether ice should be added.
         /// </summary>
         public bool Ice
         {
@@ -37,7 +37,7 @@ namespace BleakwindBuffet.Data.Drinks
         }
 
         /// <summary>
-        /// Gets and sets if the coffee should be decaf.
+        /// Whether the coffee should be decaf.
         /// </summary>
         public bool Decaf
         {
@@ -52,7 +52,7 @@ namespace BleakwindBuffet.Data.Drinks
         }
 
         /// <summary>
-        /// Gets and sets if cream should be added.
+        /// Whether cream should be added.
         /// </summary>
         public bool RoomForCream
         {
@@ -67,7 +67,7 @@ namespace BleakwindBuffet.Data.Drinks
         }
 
         /// <summary>
-        /// Gets and sets the size of the drink.
+        /// The size of the drink.
         /// </summary>
         public Size Size
         {
@@ -82,7 +82,7 @@ namespace BleakwindBuffet.Data.Drinks
         }
 
         /// <summary>
-        /// Gets the price of the drink.
+        /// The price of the drink.
         /// </summary>
         public double Price
         {
@@ -107,7 +107,7 @@ namespace BleakwindBuffet.Data.Drinks
         }
 
         /// <summary>
-        /// Gets the calories of the drink.
+        /// The calories of the drink.
         /// </summary>
         public uint Calories
         {
@@ -132,7 +132,7 @@ namespace BleakwindBuffet.Data.Drinks
         }
 
         /// <summary>
-        /// Gets the list of special instructions.
+        /// Special instructions for how to prepare the drink.
         /// </summary>
         public List<string> SpecialInstructions
         {
@@ -181,7 +181,7 @@ namespace BleakwindBuffet.Data.Drinks
                     throw new Exception("Err: Can't create string with an invalid drink size.");
             }
 
-            return sizeString + (Decaf ? " Decaf Candlehearth Coffee" : " Candlehearth Coffee");
+            return sizeString + (Decaf ? " Candlehearth Decaf Coffee" : " Candlehearth Coffee");
         }
     }
 }

@@ -19,7 +19,7 @@ namespace BleakwindBuffet.Data.Sides
         private Size size = Size.Small;
 
         /// <summary>
-        /// Gets and sets the size of the side.
+        /// The size of the side.
         /// </summary>
         public Size Size
         {
@@ -34,7 +34,7 @@ namespace BleakwindBuffet.Data.Sides
         }
 
         /// <summary>
-        /// Gets the price of the side.
+        /// The price of the side.
         /// </summary>
         public double Price
         {
@@ -59,7 +59,7 @@ namespace BleakwindBuffet.Data.Sides
         }
 
         /// <summary>
-        /// Gets the calories of the side.
+        /// The calories of the side.
         /// </summary>
         public uint Calories
         {
@@ -84,7 +84,7 @@ namespace BleakwindBuffet.Data.Sides
         }
 
         /// <summary>
-        /// Gets the list of special instructions.
+        /// Special instructions for how to prepare the drink.
         /// </summary>
         public List<string> SpecialInstructions
         {

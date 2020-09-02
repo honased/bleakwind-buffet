@@ -20,7 +20,7 @@ namespace BleakwindBuffet.Data.Entrees
         private bool roll       = true;
 
         /// <summary>
-        /// Gets and sets if sirloin should be added.
+        /// Whether sirloin should be added.
         /// </summary>
         public bool Sirloin
         {
@@ -35,7 +35,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets and sets if onion should be added.
+        /// Whether onion should be added.
         /// </summary>
         public bool Onion
         {
@@ -50,7 +50,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets and sets if the roll should be added.
+        /// Whether the roll should be added.
         /// </summary>
         public bool Roll
         {
@@ -65,7 +65,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets the price of the entree.
+        /// The price of the entree.
         /// </summary>
         public double Price
         {
@@ -76,7 +76,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets the calories of the entree.
+        /// The calories of the entre.
         /// </summary>
         public uint Calories
         {
@@ -87,7 +87,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets the list of special instructions.
+        /// Special instructions for how to prepare the drink.
         /// </summary>
         public List<string> SpecialInstructions
         {

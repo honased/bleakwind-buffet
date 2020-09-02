@@ -16,7 +16,7 @@ namespace BleakwindBuffet.Data.Entrees
     public class ThugsTBone
     {
         /// <summary>
-        /// Gets the price of the entree.
+        /// The price of the entree.
         /// </summary>
         public double Price
         {
@@ -27,7 +27,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets the calories of the entree.
+        /// The calories of the entre.
         /// </summary>
         public uint Calories
         {
@@ -38,7 +38,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Gets the list of special instructions.
+        /// Special instructions for how to prepare the drink.
         /// </summary>
         public List<string> SpecialInstructions
         {
