@@ -145,5 +145,15 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             ss.Flavor = flavor;
             Assert.Equal(name, ss.ToString());
         }
+
+        [Fact]
+        public void WrongSizeShouldThrowException()
+        {
+            SailorSoda ss = new SailorSoda();
+            ss.Size = (Size)(int.MaxValue);
+            Assert.Throws<System.NotImplementedException>(() => ss.Calories);
+            Assert.Throws<System.NotImplementedException>(() => ss.Price);
+            Assert.Throws<System.NotImplementedException>(() => ss.ToString());
+        }
     }
 }

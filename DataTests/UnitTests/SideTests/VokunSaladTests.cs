@@ -71,5 +71,15 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
             vs.Size = size;
             Assert.Equal(name, vs.ToString());
         }
+
+        [Fact]
+        public void WrongSizeShouldThrowException()
+        {
+            VokunSalad vs = new VokunSalad();
+            vs.Size = (Size)(int.MaxValue);
+            Assert.Throws<System.NotImplementedException>(() => vs.Calories);
+            Assert.Throws<System.NotImplementedException>(() => vs.Price);
+            Assert.Throws<System.NotImplementedException>(() => vs.ToString());
+        }
     }
 }

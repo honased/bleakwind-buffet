@@ -9,6 +9,7 @@ using BleakwindBuffet.Data;
 using BleakwindBuffet.Data.Enums;
 using BleakwindBuffet.Data.Sides;
 using Microsoft.VisualBasic;
+using System;
 
 namespace BleakwindBuffet.DataTests.UnitTests.SideTests
 {
@@ -71,6 +72,16 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
             DragonbornWaffleFries dwf = new DragonbornWaffleFries();
             dwf.Size = size;
             Assert.Equal(name, dwf.ToString());
+        }
+
+        [Fact]
+        public void WrongSizeShouldThrowException()
+        {
+            DragonbornWaffleFries dwf = new DragonbornWaffleFries();
+            dwf.Size = (Size)(int.MaxValue);
+            Assert.Throws<NotImplementedException>(() => dwf.Calories);
+            Assert.Throws<NotImplementedException>(() => dwf.Price);
+            Assert.Throws<NotImplementedException>(() => dwf.ToString());
         }
     }
 }

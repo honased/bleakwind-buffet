@@ -93,5 +93,15 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             mm.Size = size;
             Assert.Equal(name, mm.ToString());
         }
+
+        [Fact]
+        public void WrongSizeShouldThrowException()
+        {
+            MarkarthMilk mm = new MarkarthMilk();
+            mm.Size = (Size)(int.MaxValue);
+            Assert.Throws<System.NotImplementedException>(() => mm.Calories);
+            Assert.Throws<System.NotImplementedException>(() => mm.Price);
+            Assert.Throws<System.NotImplementedException>(() => mm.ToString());
+        }
     }
 }

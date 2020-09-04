@@ -92,5 +92,15 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             aj.Size = size;
             Assert.Equal(name, aj.ToString());
         }
+
+        [Fact]
+        public void WrongSizeShouldThrowException()
+        {
+            AretinoAppleJuice aj = new AretinoAppleJuice();
+            aj.Size = (Size)(int.MaxValue);
+            Assert.Throws<System.NotImplementedException>(() => aj.Calories);
+            Assert.Throws<System.NotImplementedException>(() => aj.Price);
+            Assert.Throws<System.NotImplementedException>(() => aj.ToString());
+        }
     }
 }

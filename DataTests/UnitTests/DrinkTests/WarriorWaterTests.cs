@@ -117,5 +117,13 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             ww.Size = size;
             Assert.Equal(name, ww.ToString());
         }
+
+        [Fact]
+        public void WrongSizeShouldThrowException()
+        {
+            WarriorWater ww = new WarriorWater();
+            ww.Size = (Size)(int.MaxValue);
+            Assert.Throws<System.NotImplementedException>(() => ww.ToString());
+        }
     }
 }

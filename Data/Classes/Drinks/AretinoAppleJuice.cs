@@ -52,6 +52,9 @@ namespace BleakwindBuffet.Data.Drinks
         /// <summary>
         /// The price of the drink.
         /// </summary>
+        /// <exception cref="System.NotImplementedException">
+        /// Thrown if the price for the size is not known.
+        /// </exception>
         public double Price
         {
             get
@@ -69,7 +72,7 @@ namespace BleakwindBuffet.Data.Drinks
                         return 1.01;
 
                     default:
-                        throw new Exception("Err: Can't get the price of a drink for a size that doesn't exist.");
+                        throw new NotImplementedException($"Unknown size {Size}.");
                 }
             }
         }
@@ -77,6 +80,9 @@ namespace BleakwindBuffet.Data.Drinks
         /// <summary>
         /// The calories of the drink.
         /// </summary>
+        /// <exception cref="System.NotImplementedException">
+        /// Thrown if the calories for the size is not known.
+        /// </exception>
         public uint Calories
         {
             get
@@ -94,7 +100,7 @@ namespace BleakwindBuffet.Data.Drinks
                         return 132;
 
                     default:
-                        throw new Exception("Err: Can't get the calories of a drink for a size that doesn't exist.");
+                        throw new NotImplementedException($"Unknown size {Size}.");
                 }
             }
         }
@@ -121,6 +127,9 @@ namespace BleakwindBuffet.Data.Drinks
         /// Returns the nicely formatted name of the drink.
         /// </summary>
         /// <returns>The name of the drink as a string.</returns>
+        /// <exception cref="System.NotImplementedException">
+        /// Thrown if the name for the size is not known.
+        /// </exception>
         public override string ToString()
         {
             string sizeString;
@@ -141,7 +150,7 @@ namespace BleakwindBuffet.Data.Drinks
                     break;
 
                 default:
-                    throw new Exception("Err: Can't create string with an invalid drink size.");
+                    throw new NotImplementedException($"Unknown size {Size}.");
             }
 
             return sizeString + " Aretino Apple Juice";

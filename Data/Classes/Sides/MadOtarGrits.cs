@@ -36,6 +36,9 @@ namespace BleakwindBuffet.Data.Sides
         /// <summary>
         /// The price of the side.
         /// </summary>
+        /// <exception cref="System.NotImplementedException">
+        /// Thrown if the price for the size is not known.
+        /// </exception>
         public double Price
         {
             get
@@ -53,7 +56,7 @@ namespace BleakwindBuffet.Data.Sides
                         return 1.93;
 
                     default:
-                        throw new Exception("Err: Can't get the price of a side for a size that doesn't exist.");
+                        throw new NotImplementedException($"Unknown size {Size}");
                 }
             }
         }
@@ -61,6 +64,9 @@ namespace BleakwindBuffet.Data.Sides
         /// <summary>
         /// The calories of the side.
         /// </summary>
+        /// <exception cref="System.NotImplementedException">
+        /// Thrown if the calories for the size is not known.
+        /// </exception>
         public uint Calories
         {
             get
@@ -78,7 +84,7 @@ namespace BleakwindBuffet.Data.Sides
                         return 179;
 
                     default:
-                        throw new Exception("Err: Can't get the calories of a side for a size that doesn't exist.");
+                        throw new NotImplementedException($"Unknown size {Size}");
                 }
             }
         }
@@ -98,6 +104,9 @@ namespace BleakwindBuffet.Data.Sides
         /// Returns the nicely formatted name of the side.
         /// </summary>
         /// <returns>The name of the side as a string.</returns>
+        /// <exception cref="System.NotImplementedException">
+        /// Thrown if the name for the size is not known.
+        /// </exception>
         public override string ToString()
         {
             string sizeString;
@@ -118,7 +127,7 @@ namespace BleakwindBuffet.Data.Sides
                     break;
 
                 default:
-                    throw new Exception("Err: Can't create string with an invalid side size.");
+                    throw new NotImplementedException($"Unknown size {Size}.");
             }
 
             return sizeString + " Mad Otar Grits";

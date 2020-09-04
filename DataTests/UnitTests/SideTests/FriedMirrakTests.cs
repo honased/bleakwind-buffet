@@ -71,5 +71,15 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
             fm.Size = size;
             Assert.Equal(name, fm.ToString());
         }
+
+        [Fact]
+        public void WrongSizeShouldThrowException()
+        {
+            FriedMiraak fm = new FriedMiraak();
+            fm.Size = (Size)(int.MaxValue);
+            Assert.Throws<System.NotImplementedException>(() => fm.Calories);
+            Assert.Throws<System.NotImplementedException>(() => fm.Price);
+            Assert.Throws<System.NotImplementedException>(() => fm.ToString());
+        }
     }
 }

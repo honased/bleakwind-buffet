@@ -137,5 +137,15 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             cc.Decaf = decaf;
             Assert.Equal(name, cc.ToString());
         }
+
+        [Fact]
+        public void WrongSizeShouldThrowException()
+        {
+            CandlehearthCoffee cc = new CandlehearthCoffee();
+            cc.Size = (Size)(int.MaxValue);
+            Assert.Throws<System.NotImplementedException>(() => cc.Calories);
+            Assert.Throws<System.NotImplementedException>(() => cc.Price);
+            Assert.Throws<System.NotImplementedException>(() => cc.ToString());
+        }
     }
 }

@@ -71,5 +71,15 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
             mog.Size = size;
             Assert.Equal(name, mog.ToString());
         }
+
+        [Fact]
+        public void WrongSizeShouldThrowException()
+        {
+            MadOtarGrits mog = new MadOtarGrits();
+            mog.Size = (Size)(int.MaxValue);
+            Assert.Throws<System.NotImplementedException>(() => mog.Calories);
+            Assert.Throws<System.NotImplementedException>(() => mog.Price);
+            Assert.Throws<System.NotImplementedException>(() => mog.ToString());
+        }
     }
 }
