@@ -14,12 +14,11 @@ namespace BleakwindBuffet.Data.Drinks
     /// <summary>
     /// Provides a representation of the Candlehearth Coffee drink.
     /// </summary>
-    public class CandlehearthCoffee
+    public class CandlehearthCoffee : Drink
     {
         private bool ice            = false;
         private bool decaf          = false;
         private bool roomForCream   = false;
-        private Size size           = Size.Small;
 
         /// <summary>
         /// Whether ice should be added.
@@ -67,27 +66,12 @@ namespace BleakwindBuffet.Data.Drinks
         }
 
         /// <summary>
-        /// The size of the drink.
-        /// </summary>
-        public Size Size
-        {
-            get
-            {
-                return size;
-            }
-            set
-            {
-                size = value;
-            }
-        }
-
-        /// <summary>
         /// The price of the drink.
         /// </summary>
         /// <exception cref="System.NotImplementedException">
         /// Thrown if the price for the size is not known.
         /// </exception>
-        public double Price
+        public override double Price
         {
             get
             {
@@ -115,7 +99,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <exception cref="System.NotImplementedException">
         /// Thrown if the calories for the size is not known.
         /// </exception>
-        public uint Calories
+        public override uint Calories
         {
             get
             {
@@ -140,7 +124,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <summary>
         /// Special instructions for how to prepare the drink.
         /// </summary>
-        public List<string> SpecialInstructions
+        public override List<string> SpecialInstructions
         {
             get
             {

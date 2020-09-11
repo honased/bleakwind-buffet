@@ -14,10 +14,9 @@ namespace BleakwindBuffet.Data.Drinks
     /// <summary>
     /// Provides a representation of the Sailor Soda drink.
     /// </summary>
-    public class SailorSoda
+    public class SailorSoda : Drink
     {
         private bool ice = true;
-        private Size size = Size.Small;
         private SodaFlavor flavor = SodaFlavor.Cherry;
 
         /// <summary>
@@ -32,21 +31,6 @@ namespace BleakwindBuffet.Data.Drinks
             set
             {
                 ice = value;
-            }
-        }
-
-        /// <summary>
-        /// The size of the drink.
-        /// </summary>
-        public Size Size
-        {
-            get
-            {
-                return size;
-            }
-            set
-            {
-                size = value;
             }
         }
 
@@ -71,7 +55,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <exception cref="System.NotImplementedException">
         /// Thrown if the price for the size is not known.
         /// </exception>
-        public double Price
+        public override double Price
         {
             get
             {
@@ -99,7 +83,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <exception cref="System.NotImplementedException">
         /// Thrown if the calories for the size is not known.
         /// </exception>
-        public uint Calories
+        public override uint Calories
         {
             get
             {
@@ -124,7 +108,7 @@ namespace BleakwindBuffet.Data.Drinks
         /// <summary>
         /// Special instructions for how to prepare the drink.
         /// </summary>
-        public List<string> SpecialInstructions
+        public override List<string> SpecialInstructions
         {
             get
             {

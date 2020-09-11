@@ -13,7 +13,7 @@ namespace BleakwindBuffet.Data.Entrees
     /// <summary>
     /// Provides a representation of the Thalmor Triple entree.
     /// </summary>
-    public class ThalmorTriple
+    public class ThalmorTriple : Entree
     {
         private bool bun        = true;
         private bool ketchup    = true;
@@ -179,7 +179,7 @@ namespace BleakwindBuffet.Data.Entrees
         /// <summary>
         /// The price of the entree.
         /// </summary>
-        public double Price
+        public override double Price
         {
             get
             {
@@ -190,7 +190,7 @@ namespace BleakwindBuffet.Data.Entrees
         /// <summary>
         /// The calories of the entre.
         /// </summary>
-        public uint Calories
+        public override uint Calories
         {
             get
             {
@@ -201,7 +201,7 @@ namespace BleakwindBuffet.Data.Entrees
         /// <summary>
         /// Special instructions for how to prepare the drink.
         /// </summary>
-        public List<string> SpecialInstructions
+        public override List<string> SpecialInstructions
         {
             get
             {

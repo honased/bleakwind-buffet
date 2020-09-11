@@ -1,0 +1,36 @@
+﻿/*
+ * Author: Eric Honas
+ * Interface name: Drink.cs
+ * Purpose: Interface used for ensuring orderable items have certain properties.
+ */
+
+using System;
+using System.Collections.Generic;
+using System.Text;
+
+namespace BleakwindBuffet.Data.Interfaces
+{
+    /// <summary>
+    /// An interface representing the properties of orderable items.
+    /// </summary>
+    public interface IOrderItem
+    {
+        /// <summary>
+        /// The price of the item.
+        /// </summary>
+        /// <value>
+        /// In US dollars.
+        /// </value>
+        double Price { get; }
+
+        /// <summary>
+        /// The calories in the item.
+        /// </summary>
+        uint Calories { get; }
+
+        /// <summary>
+        /// The list of special instructions.
+        /// </summary>
+        List<string> SpecialInstructions { get; }
+    }
+}

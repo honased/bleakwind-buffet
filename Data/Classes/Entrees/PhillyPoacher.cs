@@ -13,7 +13,7 @@ namespace BleakwindBuffet.Data.Entrees
     /// <summary>
     /// Provides a representation of the Philly Poacher entree.
     /// </summary>
-    public class PhillyPoacher
+    public class PhillyPoacher : Entree
     {
         private bool sirloin    = true;
         private bool onion      = true;
@@ -67,7 +67,7 @@ namespace BleakwindBuffet.Data.Entrees
         /// <summary>
         /// The price of the entree.
         /// </summary>
-        public double Price
+        public override double Price
         {
             get
             {
@@ -78,7 +78,7 @@ namespace BleakwindBuffet.Data.Entrees
         /// <summary>
         /// The calories of the entre.
         /// </summary>
-        public uint Calories
+        public override uint Calories
         {
             get
             {
@@ -89,7 +89,7 @@ namespace BleakwindBuffet.Data.Entrees
         /// <summary>
         /// Special instructions for how to prepare the drink.
         /// </summary>
-        public List<string> SpecialInstructions
+        public override List<string> SpecialInstructions
         {
             get
             {

@@ -14,32 +14,15 @@ namespace BleakwindBuffet.Data.Sides
     /// <summary>
     /// Provides a representation of the Dragonborn Waffle Fries side.
     /// </summary>
-    public class DragonbornWaffleFries
+    public class DragonbornWaffleFries : Side
     {
-        private Size size = Size.Small;
-
-        /// <summary>
-        /// The size of the side.
-        /// </summary>
-        public Size Size
-        {
-            get
-            {
-                return size;
-            }
-            set
-            {
-                size = value;
-            }
-        }
-
         /// <summary>
         /// The price of the side.
         /// </summary>
         /// <exception cref="System.NotImplementedException">
         /// Thrown if the price for the size is not known.
         /// </exception>
-        public double Price
+        public override double Price
         {
             get
             {
@@ -67,7 +50,7 @@ namespace BleakwindBuffet.Data.Sides
         /// <exception cref="System.NotImplementedException">
         /// Thrown if the calories for the size is not known.
         /// </exception>
-        public uint Calories
+        public override uint Calories
         {
             get
             {
@@ -92,7 +75,7 @@ namespace BleakwindBuffet.Data.Sides
         /// <summary>
         /// Special instructions for how to prepare the drink.
         /// </summary>
-        public List<string> SpecialInstructions
+        public override List<string> SpecialInstructions
         {
             get
             {

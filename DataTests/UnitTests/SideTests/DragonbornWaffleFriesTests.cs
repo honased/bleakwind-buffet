@@ -10,11 +10,26 @@ using BleakwindBuffet.Data.Enums;
 using BleakwindBuffet.Data.Sides;
 using Microsoft.VisualBasic;
 using System;
+using BleakwindBuffet.Data.Interfaces;
 
 namespace BleakwindBuffet.DataTests.UnitTests.SideTests
 {
     public class DragonbornWaffleFriesTests
     {
+        [Fact]
+        public void ShouldBeASide()
+        {
+            DragonbornWaffleFries dwf = new DragonbornWaffleFries();
+            Assert.IsAssignableFrom<Side>(dwf);
+        }
+
+        [Fact]
+        public void ShouldBeAnOrderItem()
+        {
+            DragonbornWaffleFries dwf = new DragonbornWaffleFries();
+            Assert.IsAssignableFrom<IOrderItem>(dwf);
+        }
+
         [Fact]
         public void ShouldBeSmallByDefault()
         {
