@@ -1,0 +1,28 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Data\Data.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Compile Update="Screens\MenuSelection\Entrees\BriarheartBurgerCustomization - Copy %282%29.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>BriarheartBurgerCustomization.xaml.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Screens\MenuSelection\Entrees\BriarheartBurgerCustomization - Copy - Copy.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>BriarheartBurgerCustomization - Copy.xaml.cs</DependentUpon>
+    </Compile>
+    <Compile Update="Screens\MenuSelection\Entrees\BriarheartBurgerCustomization - Copy.xaml.cs">
+      <SubType>Code</SubType>
+      <DependentUpon>BriarheartBurgerCustomization.xaml.cs</DependentUpon>
+    </Compile>
+  </ItemGroup>
+
+</Project>
