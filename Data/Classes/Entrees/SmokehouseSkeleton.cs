@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace BleakwindBuffet.Data.Entrees
@@ -21,6 +22,11 @@ namespace BleakwindBuffet.Data.Entrees
         private bool pancake        = true;
 
         /// <summary>
+        /// An event triggered when any property is changed.
+        /// </summary>
+        public override event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
         /// Whether sausage Links should be added.
         /// </summary>
         public bool SausageLink
@@ -31,7 +37,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
+                bool invoke = sausageLink != value;
                 sausageLink = value;
+                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SausageLink"));
             }
         }
 
@@ -46,7 +54,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
+                bool invoke = egg != value;
                 egg = value;
+                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Egg"));
             }
         }
 
@@ -61,7 +71,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
+                bool invoke = hashBrowns != value;
                 hashBrowns = value;
+                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("HashBrowns"));
             }
         }
 
@@ -76,7 +88,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
+                bool invoke = pancake != value;
                 pancake = value;
+                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Pancake"));
             }
         }
 

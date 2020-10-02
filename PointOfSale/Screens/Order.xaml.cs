@@ -6,7 +6,6 @@
 
 using BleakwindBuffet.Data.Interfaces;
 using PointOfSale.Interfaces;
-using PointOfSale.Screens;
 using PointOfSale.Screens.Menus;
 using System.Windows;
 using System.Windows.Controls;

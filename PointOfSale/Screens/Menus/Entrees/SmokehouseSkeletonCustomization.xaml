@@ -1,9 +1,10 @@
-﻿<UserControl x:Class="PointOfSale.Screens.Menus.Entrees.SmokehouseSkeletonCustomization"
+﻿<u:CustomizationScreen x:Class="PointOfSale.Screens.Menus.Entrees.SmokehouseSkeletonCustomization"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PointOfSale.Screens.Menus.Entrees"
+             xmlns:u="clr-namespace:PointOfSale.Screens.Menus"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
     <UserControl.Resources>
@@ -19,10 +20,10 @@
         </ResourceDictionary>
     </UserControl.Resources>
 
-    <StackPanel Background="White">
-        <CheckBox IsChecked="True">SausageLink</CheckBox>
-        <CheckBox IsChecked="True">Egg</CheckBox>
-        <CheckBox IsChecked="True">Hashbrowns</CheckBox>
-        <CheckBox IsChecked="True">Pancake</CheckBox>
-    </StackPanel>
-</UserControl>
+    <WrapPanel Background="White" Orientation="Vertical">
+        <CheckBox IsChecked="{Binding Path=SausageLink}">SausageLink</CheckBox>
+        <CheckBox IsChecked="{Binding Path=Egg}">Egg</CheckBox>
+        <CheckBox IsChecked="{Binding Path=HashBrowns}">Hashbrowns</CheckBox>
+        <CheckBox IsChecked="{Binding Path=Pancake}">Pancake</CheckBox>
+    </WrapPanel>
+</u:CustomizationScreen>

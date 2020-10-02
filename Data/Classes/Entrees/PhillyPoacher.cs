@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace BleakwindBuffet.Data.Entrees
@@ -20,6 +21,11 @@ namespace BleakwindBuffet.Data.Entrees
         private bool roll       = true;
 
         /// <summary>
+        /// An event triggered when any property is changed.
+        /// </summary>
+        public override event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
         /// Whether sirloin should be added.
         /// </summary>
         public bool Sirloin
@@ -30,7 +36,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
+                bool invoke = sirloin != value;
                 sirloin = value;
+                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Sirloin"));
             }
         }
 
@@ -45,7 +53,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
+                bool invoke = onion != value;
                 onion = value;
+                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Onion"));
             }
         }
 
@@ -60,7 +70,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
+                bool invoke = roll != value;
                 roll = value;
+                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Roll"));
             }
         }
 

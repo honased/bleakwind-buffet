@@ -98,5 +98,25 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
             Assert.Throws<NotImplementedException>(() => dwf.Price);
             Assert.Throws<NotImplementedException>(() => dwf.ToString());
         }
+
+        [Fact]
+        public void ChangingSizeNotifiesSizeProperty()
+        {
+            var dwf = new DragonbornWaffleFries();
+            Assert.PropertyChanged(dwf, "Size", () =>
+            {
+                dwf.Size = Size.Medium;
+            });
+
+            Assert.PropertyChanged(dwf, "Size", () =>
+            {
+                dwf.Size = Size.Large;
+            });
+
+            Assert.PropertyChanged(dwf, "Size", () =>
+            {
+                dwf.Size = Size.Small;
+            });
+        }
     }
 }

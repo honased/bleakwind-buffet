@@ -117,5 +117,40 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             Assert.Throws<System.NotImplementedException>(() => aj.Price);
             Assert.Throws<System.NotImplementedException>(() => aj.ToString());
         }
+
+        [Fact]
+        public void ChangingSizeNotifiesSizeProperty()
+        {
+            var aj = new AretinoAppleJuice();
+            Assert.PropertyChanged(aj, "Size", () =>
+            {
+                aj.Size = Size.Medium;
+            });
+
+            Assert.PropertyChanged(aj, "Size", () =>
+            {
+                aj.Size = Size.Large;
+            });
+
+            Assert.PropertyChanged(aj, "Size", () =>
+            {
+                aj.Size = Size.Small;
+            });
+        }
+
+        [Fact]
+        public void ChangingIceNotifiesIceProperty()
+        {
+            var aj = new AretinoAppleJuice();
+            Assert.PropertyChanged(aj, "Ice", () =>
+            {
+                aj.Ice = true;
+            });
+
+            Assert.PropertyChanged(aj, "Ice", () =>
+            {
+                aj.Ice = false;
+            });
+        }
     }
 }

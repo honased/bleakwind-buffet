@@ -7,6 +7,7 @@
 using BleakwindBuffet.Data.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace BleakwindBuffet.Data.Sides
@@ -16,6 +17,28 @@ namespace BleakwindBuffet.Data.Sides
     /// </summary>
     public class FriedMiraak : Side
     {
+        /// <summary>
+        /// An event triggered when any property is changed.
+        /// </summary>
+        public override event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
+        /// The size of the side.
+        /// </summary>
+        public override Size Size
+        {
+            get
+            {
+                return size;
+            }
+            set
+            {
+                bool invoke = size != value;
+                size = value;
+                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Size"));
+            }
+        }
+
         /// <summary>
         /// The price of the side.
         /// </summary>

@@ -96,5 +96,25 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
             Assert.Throws<System.NotImplementedException>(() => vs.Price);
             Assert.Throws<System.NotImplementedException>(() => vs.ToString());
         }
+
+        [Fact]
+        public void ChangingSizeNotifiesSizeProperty()
+        {
+            var vs = new VokunSalad();
+            Assert.PropertyChanged(vs, "Size", () =>
+            {
+                vs.Size = Size.Medium;
+            });
+
+            Assert.PropertyChanged(vs, "Size", () =>
+            {
+                vs.Size = Size.Large;
+            });
+
+            Assert.PropertyChanged(vs, "Size", () =>
+            {
+                vs.Size = Size.Small;
+            });
+        }
     }
 }

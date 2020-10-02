@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace BleakwindBuffet.Data.Entrees
@@ -22,6 +23,11 @@ namespace BleakwindBuffet.Data.Entrees
         private bool cheese     = true;
 
         /// <summary>
+        /// An event triggered when any property is changed.
+        /// </summary>
+        public override event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
         /// Whether the bun should be added.
         /// </summary>
         public bool Bun
@@ -32,7 +38,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
+                bool invoke = bun != value;
                 bun = value;
+                if(invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Bun"));
             }
         }
 
@@ -47,7 +55,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
+                bool invoke = ketchup != value;
                 ketchup = value;
+                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ketchup"));
             }
         }
 
@@ -62,7 +72,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
+                bool invoke = mustard != value;
                 mustard = value;
+                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Mustard"));
             }
         }
 
@@ -77,7 +89,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
+                bool invoke = pickle != value;
                 pickle = value;
+                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Pickle"));
             }
         }
 
@@ -92,7 +106,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
+                bool invoke = cheese != value;
                 cheese = value;
+                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Cheese"));
             }
         }
 

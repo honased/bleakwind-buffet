@@ -37,7 +37,7 @@ namespace PointOfSale.Screens.Menus
         /// <exception cref="System.InvalidOperationException">Thrown if there is no actual customization component.</exception>
         private void AddItemClicked(object sender, RoutedEventArgs e)
         {
-            ICustomizable customization = customizationContainer.Child as ICustomizable;
+            CustomizationScreen customization = customizationContainer.Child as CustomizationScreen;
 
             if(customization == null)
             {

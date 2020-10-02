@@ -7,6 +7,7 @@
 using BleakwindBuffet.Data.Enums;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace BleakwindBuffet.Data.Drinks
@@ -19,6 +20,11 @@ namespace BleakwindBuffet.Data.Drinks
         private bool ice    = false;
 
         /// <summary>
+        /// An event triggered when any property is changed.
+        /// </summary>
+        public override event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
         /// Whether ice should be added.
         /// </summary>
         public bool Ice
@@ -29,7 +35,26 @@ namespace BleakwindBuffet.Data.Drinks
             }
             set
             {
+                bool invoke = ice != value;
                 ice = value;
+                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ice"));
+            }
+        }
+
+        /// <summary>
+        /// The size of the drink.
+        /// </summary>
+        public override Size Size
+        {
+            get
+            {
+                return size;
+            }
+            set
+            {
+                bool invoke = size != value;
+                size = value;
+                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Size"));
             }
         }
 

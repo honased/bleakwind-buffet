@@ -96,5 +96,25 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
             Assert.Throws<System.NotImplementedException>(() => mog.Price);
             Assert.Throws<System.NotImplementedException>(() => mog.ToString());
         }
+
+        [Fact]
+        public void ChangingSizeNotifiesSizeProperty()
+        {
+            var mog = new MadOtarGrits();
+            Assert.PropertyChanged(mog, "Size", () =>
+            {
+                mog.Size = Size.Medium;
+            });
+
+            Assert.PropertyChanged(mog, "Size", () =>
+            {
+                mog.Size = Size.Large;
+            });
+
+            Assert.PropertyChanged(mog, "Size", () =>
+            {
+                mog.Size = Size.Small;
+            });
+        }
     }
 }

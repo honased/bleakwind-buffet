@@ -9,8 +9,6 @@ using BleakwindBuffet.Data.Entrees;
 using BleakwindBuffet.Data.Interfaces;
 using BleakwindBuffet.Data.Sides;
 using PointOfSale.Interfaces;
-using PointOfSale.Screens;
-using PointOfSale.Screens.Menus;
 using PointOfSale.Screens.Menus.Drinks;
 using PointOfSale.Screens.Menus.Entrees;
 using PointOfSale.Screens.Menus.Sides;
@@ -51,26 +49,26 @@ namespace PointOfSale.Screens.Menus
                 switch(button.Tag)
                 {
                     // Entrees
-                    case "0": CustomizeItem<BriarheartBurger, BriarheartBurgerCustomization>("Briarheart Burger"); break;
-                    case "1": CustomizeItem<DoubleDraugr, DoubleDraugrCustomization>("Double Draugr"); break;
-                    case "2": CustomizeItem<ThalmorTriple, ThalmorTripleCustomization>("Thalmor Triple"); break;
-                    case "3": CustomizeItem<SmokehouseSkeleton, SmokehouseSkeletonCustomization>("Smokehouse Skeleton"); break;
-                    case "4": CustomizeItem<GardenOrcOmelette, GardenOrcOmeletteCustomization>("Garden Orc Omelette"); break;
-                    case "5": CustomizeItem<ThugsTBone, ThugsTBoneCustomization>("Thugs T-Bone"); break;
-                    case "6": CustomizeItem<PhillyPoacher, PhillyPoacherCustomization>("Philly Poacher"); break;
+                    case "0": ChangeToItem<BriarheartBurger, BriarheartBurgerCustomization>("Briarheart Burger"); break;
+                    case "1": ChangeToItem<DoubleDraugr, DoubleDraugrCustomization>("Double Draugr"); break;
+                    case "2": ChangeToItem<ThalmorTriple, ThalmorTripleCustomization>("Thalmor Triple"); break;
+                    case "3": ChangeToItem<SmokehouseSkeleton, SmokehouseSkeletonCustomization>("Smokehouse Skeleton"); break;
+                    case "4": ChangeToItem<GardenOrcOmelette, GardenOrcOmeletteCustomization>("Garden Orc Omelette"); break;
+                    case "5": ChangeToItem<ThugsTBone, ThugsTBoneCustomization>("Thugs T-Bone"); break;
+                    case "6": ChangeToItem<PhillyPoacher, PhillyPoacherCustomization>("Philly Poacher"); break;
 
                     // Drinks
-                    case "7": CustomizeItem<SailorSoda, SailorSodaCustomization>("Sailor Soda"); break;
-                    case "8": CustomizeItem<MarkarthMilk, MarkarthMilkCustomization>("Markarth Milk"); break;
-                    case "9": CustomizeItem<AretinoAppleJuice, AretinoAppleJuiceCustomization>("Aretino Apple Juice"); break;
-                    case "10": CustomizeItem<CandlehearthCoffee, CandlehearthCoffeeCustomization>("Candlehearth Coffee"); break;
-                    case "11": CustomizeItem<WarriorWater, WarriorWaterCustomization>("Warrior Water"); break;
+                    case "7": ChangeToItem<SailorSoda, SailorSodaCustomization>("Sailor Soda"); break;
+                    case "8": ChangeToItem<MarkarthMilk, MarkarthMilkCustomization>("Markarth Milk"); break;
+                    case "9": ChangeToItem<AretinoAppleJuice, AretinoAppleJuiceCustomization>("Aretino Apple Juice"); break;
+                    case "10": ChangeToItem<CandlehearthCoffee, CandlehearthCoffeeCustomization>("Candlehearth Coffee"); break;
+                    case "11": ChangeToItem<WarriorWater, WarriorWaterCustomization>("Warrior Water"); break;
 
                     // Sides
-                    case "12": CustomizeItem<VokunSalad, SideCustomization>("Vokun Salad"); break;
-                    case "13": CustomizeItem<FriedMiraak, SideCustomization>("Fried Miraak"); break;
-                    case "14": CustomizeItem<MadOtarGrits, SideCustomization>("Mad Otar Grits"); break;
-                    case "15": CustomizeItem<DragonbornWaffleFries, SideCustomization>("Dragonborn Waffle Fries"); break;
+                    case "12": ChangeToItem<VokunSalad, SideCustomization>("Vokun Salad"); break;
+                    case "13": ChangeToItem<FriedMiraak, SideCustomization>("Fried Miraak"); break;
+                    case "14": ChangeToItem<MadOtarGrits, SideCustomization>("Mad Otar Grits"); break;
+                    case "15": ChangeToItem<DragonbornWaffleFries, SideCustomization>("Dragonborn Waffle Fries"); break;
 
                     // Unknown
                     default:
@@ -88,14 +86,14 @@ namespace PointOfSale.Screens.Menus
         /// <typeparam name="TOrderItem">The type of item to create.</typeparam>
         /// <typeparam name="TCustomizationOptions">The customization page to use to create it.</typeparam>
         /// <param name="name">The name of the menu item.</param>
-        private void CustomizeItem<TOrderItem, TCustomizationOptions>(string name) where TOrderItem : IOrderItem where TCustomizationOptions : UIElement, ICustomizable, new()
+        private void ChangeToItem<TOrderItem, TCustomizationOptions>(string name) where TOrderItem : IOrderItem, new() where TCustomizationOptions : CustomizationScreen, new()
         {
             ItemCustomization customizer = new ItemCustomization();
 
             customizer.customizeItemLabel.Text = "Customize " + name;
 
             TCustomizationOptions customizationOptions = new TCustomizationOptions();
-            customizationOptions.CustomizableItemType = typeof(TOrderItem);
+            customizationOptions.DataContext = new TOrderItem();
 
             customizer.customizationContainer.Child = customizationOptions;
 

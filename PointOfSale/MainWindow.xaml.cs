@@ -4,6 +4,7 @@
  * Purpose: Creates a window to hold the gui for the POS.
  */
 
+using PointOfSale.Screens;
 using System.Windows;
 
 namespace PointOfSale

@@ -162,5 +162,70 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             Assert.Throws<System.NotImplementedException>(() => cc.Price);
             Assert.Throws<System.NotImplementedException>(() => cc.ToString());
         }
+
+        [Fact]
+        public void ChangingSizeNotifiesSizeProperty()
+        {
+            var cc = new CandlehearthCoffee();
+            Assert.PropertyChanged(cc, "Size", () =>
+            {
+                cc.Size = Size.Medium;
+            });
+
+            Assert.PropertyChanged(cc, "Size", () =>
+            {
+                cc.Size = Size.Large;
+            });
+
+            Assert.PropertyChanged(cc, "Size", () =>
+            {
+                cc.Size = Size.Small;
+            });
+        }
+
+        [Fact]
+        public void ChangingIceNotifiesIceProperty()
+        {
+            var cc = new CandlehearthCoffee();
+            Assert.PropertyChanged(cc, "Ice", () =>
+            {
+                cc.Ice = true;
+            });
+
+            Assert.PropertyChanged(cc, "Ice", () =>
+            {
+                cc.Ice = false;
+            });
+        }
+
+        [Fact]
+        public void ChangingRoomForCreamNotifiesRoomForCreamProperty()
+        {
+            var cc = new CandlehearthCoffee();
+            Assert.PropertyChanged(cc, "RoomForCream", () =>
+            {
+                cc.RoomForCream = true;
+            });
+
+            Assert.PropertyChanged(cc, "RoomForCream", () =>
+            {
+                cc.RoomForCream = false;
+            });
+        }
+
+        [Fact]
+        public void ChangingDecafNotifiesDecafProperty()
+        {
+            var cc = new CandlehearthCoffee();
+            Assert.PropertyChanged(cc, "Decaf", () =>
+            {
+                cc.Decaf = true;
+            });
+
+            Assert.PropertyChanged(cc, "Decaf", () =>
+            {
+                cc.Decaf = false;
+            });
+        }
     }
 }

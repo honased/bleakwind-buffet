@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PointOfSale.Screens"
         mc:Ignorable="d"
         Title="Bleakwind Buffet POS" Height="500" Width="900">
-    <Grid>
-        <local:Order></local:Order>
-    </Grid>
+    <Border Name="container">
+        <local:Order/>
+    </Border>
 </Window>

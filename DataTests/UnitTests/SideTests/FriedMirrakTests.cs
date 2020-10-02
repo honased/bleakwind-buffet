@@ -96,5 +96,25 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
             Assert.Throws<System.NotImplementedException>(() => fm.Price);
             Assert.Throws<System.NotImplementedException>(() => fm.ToString());
         }
+
+        [Fact]
+        public void ChangingSizeNotifiesSizeProperty()
+        {
+            var fm = new FriedMiraak();
+            Assert.PropertyChanged(fm, "Size", () =>
+            {
+                fm.Size = Size.Medium;
+            });
+
+            Assert.PropertyChanged(fm, "Size", () =>
+            {
+                fm.Size = Size.Large;
+            });
+
+            Assert.PropertyChanged(fm, "Size", () =>
+            {
+                fm.Size = Size.Small;
+            });
+        }
     }
 }

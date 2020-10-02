@@ -170,5 +170,75 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
             Assert.Throws<System.NotImplementedException>(() => ss.Price);
             Assert.Throws<System.NotImplementedException>(() => ss.ToString());
         }
+
+        [Fact]
+        public void ChangingSizeNotifiesSizeProperty()
+        {
+            var ss = new SailorSoda();
+            Assert.PropertyChanged(ss, "Size", () =>
+            {
+                ss.Size = Size.Medium;
+            });
+
+            Assert.PropertyChanged(ss, "Size", () =>
+            {
+                ss.Size = Size.Large;
+            });
+
+            Assert.PropertyChanged(ss, "Size", () =>
+            {
+                ss.Size = Size.Small;
+            });
+        }
+
+        [Fact]
+        public void ChangingFlavorNotifiesFlavorProperty()
+        {
+            var ss = new SailorSoda();
+            Assert.PropertyChanged(ss, "Flavor", () =>
+            {
+                ss.Flavor = SodaFlavor.Blackberry;
+            });
+
+            Assert.PropertyChanged(ss, "Flavor", () =>
+            {
+                ss.Flavor = SodaFlavor.Cherry;
+            });
+
+            Assert.PropertyChanged(ss, "Flavor", () =>
+            {
+                ss.Flavor = SodaFlavor.Grapefruit;
+            });
+
+            Assert.PropertyChanged(ss, "Flavor", () =>
+            {
+                ss.Flavor = SodaFlavor.Lemon;
+            });
+
+            Assert.PropertyChanged(ss, "Flavor", () =>
+            {
+                ss.Flavor = SodaFlavor.Peach;
+            });
+
+            Assert.PropertyChanged(ss, "Flavor", () =>
+            {
+                ss.Flavor = SodaFlavor.Watermelon;
+            });
+        }
+
+        [Fact]
+        public void ChangingIceNotifiesIceProperty()
+        {
+            var ss = new SailorSoda();
+            Assert.PropertyChanged(ss, "Ice", () =>
+            {
+                ss.Ice = false;
+            });
+
+            Assert.PropertyChanged(ss, "Ice", () =>
+            {
+                ss.Ice = true;
+            });
+        }
     }
 }

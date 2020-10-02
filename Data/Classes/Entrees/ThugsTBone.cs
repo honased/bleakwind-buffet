@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace BleakwindBuffet.Data.Entrees
@@ -15,6 +16,11 @@ namespace BleakwindBuffet.Data.Entrees
     /// </summary>
     public class ThugsTBone : Entree
     {
+        /// <summary>
+        /// An event triggered when any property is changed.
+        /// </summary>
+        public override event PropertyChangedEventHandler PropertyChanged;
+
         /// <summary>
         /// The price of the entree.
         /// </summary>

@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace BleakwindBuffet.Data.Entrees
@@ -21,6 +22,11 @@ namespace BleakwindBuffet.Data.Entrees
         private bool cheddar        = true;
 
         /// <summary>
+        /// An event triggered when any property is changed.
+        /// </summary>
+        public override event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
         /// Whether broccoli should be added.
         /// </summary>
         public bool Broccoli
@@ -31,7 +37,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
+                bool invoke = broccoli != value;
                 broccoli = value;
+                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Broccoli"));
             }
         }
 
@@ -46,7 +54,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
+                bool invoke = mushrooms != value;
                 mushrooms = value;
+                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Mushrooms"));
             }
         }
 
@@ -61,7 +71,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
+                bool invoke = tomato != value;
                 tomato = value;
+                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tomato"));
             }
         }
 
@@ -76,7 +88,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
+                bool invoke = cheddar != value;
                 cheddar = value;
+                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Cheddar"));
             }
         }
 

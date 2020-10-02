@@ -6,6 +6,7 @@
 
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Text;
 
 namespace BleakwindBuffet.Data.Entrees
@@ -25,17 +26,24 @@ namespace BleakwindBuffet.Data.Entrees
         private bool mayo       = true;
 
         /// <summary>
+        /// An event triggered when any property is changed.
+        /// </summary>
+        public override event PropertyChangedEventHandler PropertyChanged;
+
+        /// <summary>
         /// Whether the bun should be added.
         /// </summary>
         public bool Bun
         {
-            get 
+            get
             {
                 return bun;
             }
             set
             {
+                bool invoke = bun != value;
                 bun = value;
+                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Bun"));
             }
         }
 
@@ -50,7 +58,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
+                bool invoke = ketchup != value;
                 ketchup = value;
+                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ketchup"));
             }
         }
 
@@ -65,7 +75,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
+                bool invoke = mustard != value;
                 mustard = value;
+                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Mustard"));
             }
         }
 
@@ -80,7 +92,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
+                bool invoke = pickle != value;
                 pickle = value;
+                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Pickle"));
             }
         }
 
@@ -95,7 +109,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
+                bool invoke = cheese != value;
                 cheese = value;
+                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Cheese"));
             }
         }
 
@@ -110,7 +126,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
+                bool invoke = tomato != value;
                 tomato = value;
+                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tomato"));
             }
         }
 
@@ -125,7 +143,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
+                bool invoke = lettuce != value;
                 lettuce = value;
+                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Lettuce"));
             }
         }
 
@@ -140,7 +160,9 @@ namespace BleakwindBuffet.Data.Entrees
             }
             set
             {
+                bool invoke = mayo != value;
                 mayo = value;
+                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Mayo"));
             }
         }
 
