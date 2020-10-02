@@ -11,6 +11,7 @@ using BleakwindBuffet.Data.Sides;
 using Microsoft.VisualBasic;
 using System;
 using BleakwindBuffet.Data.Interfaces;
+using System.ComponentModel;
 
 namespace BleakwindBuffet.DataTests.UnitTests.SideTests
 {
@@ -117,6 +118,12 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
             {
                 dwf.Size = Size.Small;
             });
+        }
+
+        [Fact]
+        public void ShouldImplementINotifyPropertyChanged()
+        {
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(new DragonbornWaffleFries());
         }
     }
 }
