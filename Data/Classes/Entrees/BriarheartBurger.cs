@@ -40,7 +40,11 @@ namespace BleakwindBuffet.Data.Entrees
             {
                 bool invoke = bun != value;
                 bun = value;
-                if(invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Bun"));
+                if (invoke)
+                {
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Bun"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
             }
         }
 
@@ -57,7 +61,11 @@ namespace BleakwindBuffet.Data.Entrees
             {
                 bool invoke = ketchup != value;
                 ketchup = value;
-                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ketchup"));
+                if (invoke)
+                {
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ketchup"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
             }
         }
 
@@ -74,7 +82,11 @@ namespace BleakwindBuffet.Data.Entrees
             {
                 bool invoke = mustard != value;
                 mustard = value;
-                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Mustard"));
+                if (invoke)
+                {
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Mustard"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
             }
         }
 
@@ -91,7 +103,11 @@ namespace BleakwindBuffet.Data.Entrees
             {
                 bool invoke = pickle != value;
                 pickle = value;
-                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Pickle"));
+                if (invoke)
+                {
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Pickle"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
             }
         }
 
@@ -108,7 +124,11 @@ namespace BleakwindBuffet.Data.Entrees
             {
                 bool invoke = cheese != value;
                 cheese = value;
-                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Cheese"));
+                if (invoke)
+                {
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Cheese"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
             }
         }
 

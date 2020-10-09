@@ -1,9 +1,10 @@
 ﻿/*
  * Author: Eric Honas
  * Class name: ItemCustomization.xaml.cs
- * Purpose: A component used for customizing an generic orderable item.
+ * Purpose: A component used for customizing a generic orderable item.
  */
 
+using BleakwindBuffet.Data.Classes;
 using PointOfSale.Interfaces;
 using System;
 using System.Windows;
@@ -27,7 +28,7 @@ namespace PointOfSale.Screens.Menus
         /// <summary>
         /// The parent that is holding and displaying this component.
         /// </summary>
-        public Order OrderComponent { get; set; }
+        public OrderComponent OrderComponent { get; set; }
 
         /// <summary>
         /// Adds the customized item to the order and returns to the menu selection screen.
@@ -39,13 +40,6 @@ namespace PointOfSale.Screens.Menus
         {
             CustomizationScreen customization = customizationContainer.Child as CustomizationScreen;
 
-            if(customization == null)
-            {
-                throw new InvalidOperationException("Cannot add the item when no customization has been set.");
-            }
-
-            OrderComponent.AddItem(customization.OrderedItem);
-
             OrderComponent.ChangeScreen(new MenuSelectionScreen());
         }
 
@@ -56,6 +50,18 @@ namespace PointOfSale.Screens.Menus
         /// <param name="e">The event arguments associated with the press.</param>
         private void CancelClicked(object sender, RoutedEventArgs e)
         {
+            CustomizationScreen customization = customizationContainer.Child as CustomizationScreen;
+
+            if (customization == null)
+            {
+                throw new InvalidOperationException("Cannot add the item when no customization has been set.");
+            }
+
+            if (DataContext is Order order)
+            {
+                order.Remove(customization.OrderedItem);
+            }
+
             OrderComponent.ChangeScreen(new MenuSelectionScreen());
         }
     }

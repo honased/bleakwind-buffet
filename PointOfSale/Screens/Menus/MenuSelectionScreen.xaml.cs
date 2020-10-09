@@ -4,11 +4,13 @@
  * Purpose: A component used for displaying the menu of available options.
  */
 
+using BleakwindBuffet.Data.Classes;
 using BleakwindBuffet.Data.Drinks;
 using BleakwindBuffet.Data.Entrees;
 using BleakwindBuffet.Data.Interfaces;
 using BleakwindBuffet.Data.Sides;
 using PointOfSale.Interfaces;
+using PointOfSale.Screens.Menus.Buttons;
 using PointOfSale.Screens.Menus.Drinks;
 using PointOfSale.Screens.Menus.Entrees;
 using PointOfSale.Screens.Menus.Sides;
@@ -31,10 +33,27 @@ namespace PointOfSale.Screens.Menus
             InitializeComponent();
         }
 
+        public MenuSelectionScreen(bool showEntree, bool showDrinks, bool showSides)
+        {
+            InitializeComponent();
+
+            foreach (Button button in gridButtons.Children)
+            {
+                if (!showEntree && button is EntreeButton) button.Visibility = Visibility.Hidden;
+                if (!showDrinks && button is DrinkButton)  button.Visibility = Visibility.Hidden;
+                if (!showSides  && button is SideButton)   button.Visibility = Visibility.Hidden;
+            }
+
+            comboButton.Visibility = Visibility.Hidden;
+            cancelButton.Visibility = Visibility.Visible;
+        }
+
         /// <summary>
         /// The parent that is holding and displaying this component.
         /// </summary>
-        public Order OrderComponent { get; set; }
+        public OrderComponent OrderComponent { get; set; }
+
+        public UserControl ReturnScreen { get; set; }
 
         /// <summary>
         /// Swaps the screen to allow for the item chosen to be customized and added to the order.
@@ -70,6 +89,9 @@ namespace PointOfSale.Screens.Menus
                     case "14": ChangeToItem<MadOtarGrits, SideCustomization>("Mad Otar Grits"); break;
                     case "15": ChangeToItem<DragonbornWaffleFries, SideCustomization>("Dragonborn Waffle Fries"); break;
 
+                    // Combo
+                    case "16": ChangeToItem<Combo, ComboCustomization>("Dragonborn Waffle Fries"); break;
+
                     // Unknown
                     default:
                         throw new NotImplementedException("Haven't implemented that specific button yet.");
@@ -88,16 +110,39 @@ namespace PointOfSale.Screens.Menus
         /// <param name="name">The name of the menu item.</param>
         private void ChangeToItem<TOrderItem, TCustomizationOptions>(string name) where TOrderItem : IOrderItem, new() where TCustomizationOptions : CustomizationScreen, new()
         {
-            ItemCustomization customizer = new ItemCustomization();
+            if(DataContext is Combo combo)
+            {
+                ItemModification modifier = new ItemModification();
+                modifier.customizeItemLabel.Text = "Customize " + name;
+                TCustomizationOptions customizationOptions = new TCustomizationOptions();
+                TOrderItem item = new TOrderItem();
+                customizationOptions.DataContext = item;
+                modifier.customizationContainer.Child = customizationOptions;
+                modifier.ReturnScreen = ReturnScreen;
 
-            customizer.customizeItemLabel.Text = "Customize " + name;
+                if (item is Entree entree) combo.Entree = entree;
+                else if (item is Drink drink) combo.Drink = drink;
+                else if (item is Side side) combo.Side = side;
 
-            TCustomizationOptions customizationOptions = new TCustomizationOptions();
-            customizationOptions.DataContext = new TOrderItem();
+                OrderComponent.ChangeScreen(modifier);
+            }
+            else if(OrderComponent.DataContext is Order order)
+            {
+                ItemCustomization customizer = new ItemCustomization();
+                customizer.customizeItemLabel.Text = "Customize " + name;
+                TCustomizationOptions customizationOptions = new TCustomizationOptions();
+                TOrderItem item = new TOrderItem();
+                customizationOptions.DataContext = item;
+                customizer.customizationContainer.Child = customizationOptions;
+                OrderComponent.ChangeScreen(customizer);
 
-            customizer.customizationContainer.Child = customizationOptions;
+                order.Add(item);
+            }
+        }
 
-            OrderComponent.ChangeScreen(customizer);
+        private void CancelClicked(object sender, RoutedEventArgs e)
+        {
+            OrderComponent.ChangeScreen(ReturnScreen);
         }
     }
 }

@@ -19,6 +19,6 @@ namespace PointOfSale.Interfaces
         /// <summary>
         /// The parent that is holding and displaying this component.
         /// </summary>
-        Order OrderComponent { get; set; }
+        OrderComponent OrderComponent { get; set; }
     }
 }

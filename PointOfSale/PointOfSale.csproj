@@ -23,6 +23,15 @@
       <SubType>Code</SubType>
       <DependentUpon>BriarheartBurgerCustomization.xaml.cs</DependentUpon>
     </Compile>
+    <Compile Update="Screens\Menus\ItemModification.xaml.cs">
+      <SubType>Code</SubType>
+    </Compile>
+  </ItemGroup>
+
+  <ItemGroup>
+    <Page Update="Screens\Menus\ItemModification.xaml">
+      <SubType>Designer</SubType>
+    </Page>
   </ItemGroup>
 
 </Project>

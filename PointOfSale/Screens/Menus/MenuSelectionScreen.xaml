@@ -5,55 +5,46 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:PointOfSale"
              xmlns:MenuSelection="clr-namespace:PointOfSale.Screens.Menus"
+             xmlns:btn="clr-namespace:PointOfSale.Screens.Menus.Buttons"
              mc:Ignorable="d" 
              d:DesignHeight="450" d:DesignWidth="800">
-    <DockPanel>
-        <Grid DockPanel.Dock="Bottom">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"/>
-                <ColumnDefinition Width="1*"/>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"/>
-            </Grid.RowDefinitions>
+    <Grid Name="gridButtons">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+            <ColumnDefinition Width="1*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+            <RowDefinition Height="1*"></RowDefinition>
+        </Grid.RowDefinitions>
 
-            <Button FontSize="20" Margin="10">Cancel Order</Button>
-            <Button FontSize="20" Margin="10" Grid.Column="1">Finalize Order</Button>
-        </Grid>
-        <Grid DockPanel.Dock="Top">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-                <ColumnDefinition Width="1*"></ColumnDefinition>
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
-                <RowDefinition Height="1*"></RowDefinition>
-            </Grid.RowDefinitions>
+        <btn:EntreeButton Grid.Row="0" Grid.Column="0" Margin="5" FontSize="17" Tag="0" Click="CustomizeItem">Briarheart Burger</btn:EntreeButton>
+        <btn:EntreeButton Grid.Row="1" Grid.Column="0" Margin="5" FontSize="17" Tag="1" Click="CustomizeItem">Double Dragur</btn:EntreeButton>
+        <btn:EntreeButton Grid.Row="2" Grid.Column="0" Margin="5" FontSize="17" Tag="2" Click="CustomizeItem">Thalmor Triple</btn:EntreeButton>
+        <btn:EntreeButton Grid.Row="3" Grid.Column="0" Margin="5" FontSize="17" Tag="3" Click="CustomizeItem">Smokehouse Skeleton</btn:EntreeButton>
+        <btn:EntreeButton Grid.Row="4" Grid.Column="0" Margin="5" FontSize="17" Tag="4" Click="CustomizeItem">Garden Orc Omlette</btn:EntreeButton>
+        <btn:EntreeButton Grid.Row="5" Grid.Column="0" Margin="5" FontSize="17" Tag="5" Click="CustomizeItem">Thugs T-Bone</btn:EntreeButton>
+        <btn:EntreeButton Grid.Row="6" Grid.Column="0" Margin="5" FontSize="17" Tag="6" Click="CustomizeItem">Philly Poacher</btn:EntreeButton>
 
-            <Button Grid.Row="0" Grid.Column="0" Margin="5" FontSize="17" Tag="0" Click="CustomizeItem">Briarheart Burger</Button>
-            <Button Grid.Row="1" Grid.Column="0" Margin="5" FontSize="17" Tag="1" Click="CustomizeItem">Double Dragur</Button>
-            <Button Grid.Row="2" Grid.Column="0" Margin="5" FontSize="17" Tag="2" Click="CustomizeItem">Thalmor Triple</Button>
-            <Button Grid.Row="3" Grid.Column="0" Margin="5" FontSize="17" Tag="3" Click="CustomizeItem">Smokehouse Skeleton</Button>
-            <Button Grid.Row="4" Grid.Column="0" Margin="5" FontSize="17" Tag="4" Click="CustomizeItem">Garden Orc Omlette</Button>
-            <Button Grid.Row="5" Grid.Column="0" Margin="5" FontSize="17" Tag="5" Click="CustomizeItem">Thugs T-Bone</Button>
-            <Button Grid.Row="6" Grid.Column="0" Margin="5" FontSize="17" Tag="6" Click="CustomizeItem">Philly Poacher</Button>
+        <btn:DrinkButton Grid.Row="0" Grid.Column="1" Margin="5" FontSize="17" Tag="7" Click="CustomizeItem">Sailor Soda</btn:DrinkButton>
+        <btn:DrinkButton Grid.Row="1" Grid.Column="1" Margin="5" FontSize="17" Tag="8" Click="CustomizeItem">Markarth Milk</btn:DrinkButton>
+        <btn:DrinkButton Grid.Row="2" Grid.Column="1" Margin="5" FontSize="17" Tag="9" Click="CustomizeItem">Aretino Apple Juice</btn:DrinkButton>
+        <btn:DrinkButton Grid.Row="3" Grid.Column="1" Margin="5" FontSize="17" Tag="10" Click="CustomizeItem">Candlehearth Coffee</btn:DrinkButton>
+        <btn:DrinkButton Grid.Row="4" Grid.Column="1" Margin="5" FontSize="17" Tag="11" Click="CustomizeItem">Warrior Water</btn:DrinkButton>
 
-            <Button Grid.Row="0" Grid.Column="1" Margin="5" FontSize="17" Tag="7" Click="CustomizeItem">Sailor Soda</Button>
-            <Button Grid.Row="1" Grid.Column="1" Margin="5" FontSize="17" Tag="8" Click="CustomizeItem">Markarth Milk</Button>
-            <Button Grid.Row="2" Grid.Column="1" Margin="5" FontSize="17" Tag="9" Click="CustomizeItem">Aretino Apple Juice</Button>
-            <Button Grid.Row="3" Grid.Column="1" Margin="5" FontSize="17" Tag="10" Click="CustomizeItem">Candlehearth Coffee</Button>
-            <Button Grid.Row="4" Grid.Column="1" Margin="5" FontSize="17" Tag="11" Click="CustomizeItem">Warrior Water</Button>
+        <btn:SideButton Grid.Row="0" Grid.Column="2" Margin="5" FontSize="17" Tag="12" Click="CustomizeItem">Vokun Salad</btn:SideButton>
+        <btn:SideButton Grid.Row="1" Grid.Column="2" Margin="5" FontSize="17" Tag="13" Click="CustomizeItem">Fried Miraak</btn:SideButton>
+        <btn:SideButton Grid.Row="2" Grid.Column="2" Margin="5" FontSize="17" Tag="14" Click="CustomizeItem">Mad Otar Grits</btn:SideButton>
+        <btn:SideButton Grid.Row="3" Grid.Column="2" Margin="5" FontSize="17" Tag="15" Click="CustomizeItem">Dragonborn Waffle Fries</btn:SideButton>
 
-            <Button Grid.Row="0" Grid.Column="2" Margin="5" FontSize="17" Tag="12" Click="CustomizeItem">Vokun Salad</Button>
-            <Button Grid.Row="1" Grid.Column="2" Margin="5" FontSize="17" Tag="13" Click="CustomizeItem">Fried Miraak</Button>
-            <Button Grid.Row="2" Grid.Column="2" Margin="5" FontSize="17" Tag="14" Click="CustomizeItem">Mad Otar Grits</Button>
-            <Button Grid.Row="3" Grid.Column="2" Margin="5" FontSize="17" Tag="15" Click="CustomizeItem">Dragonborn Waffle Fries</Button>
-        </Grid>
-    </DockPanel>
+        <Button Name="comboButton" Grid.Row="6" Grid.Column="2" Margin="5" FontSize="17" Tag="16" Click="CustomizeItem">Combo</Button>
+
+        <Button Name="cancelButton" Grid.Row="6" Grid.Column="1" Margin="5" FontSize="17" Visibility="Hidden" Click="CancelClicked">Cancel</Button>
+    </Grid>
 </UserControl>

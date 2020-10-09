@@ -47,5 +47,16 @@ namespace BleakwindBuffet.Data.Sides
         /// Special instructions to prepare the side
         /// </summary>
         public abstract List<string> SpecialInstructions { get; }
+
+        /// <summary>
+        /// The name of the item.
+        /// </summary>
+        public virtual string Name
+        {
+            get
+            {
+                return ToString();
+            }
+        }
     }
 }

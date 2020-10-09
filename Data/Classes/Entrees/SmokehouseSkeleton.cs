@@ -39,7 +39,11 @@ namespace BleakwindBuffet.Data.Entrees
             {
                 bool invoke = sausageLink != value;
                 sausageLink = value;
-                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SausageLink"));
+                if (invoke)
+                {
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SausageLink"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
             }
         }
 
@@ -56,7 +60,11 @@ namespace BleakwindBuffet.Data.Entrees
             {
                 bool invoke = egg != value;
                 egg = value;
-                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Egg"));
+                if (invoke)
+                {
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Egg"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
             }
         }
 
@@ -73,7 +81,11 @@ namespace BleakwindBuffet.Data.Entrees
             {
                 bool invoke = hashBrowns != value;
                 hashBrowns = value;
-                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("HashBrowns"));
+                if (invoke)
+                {
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("HashBrowns"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
             }
         }
 
@@ -90,7 +102,11 @@ namespace BleakwindBuffet.Data.Entrees
             {
                 bool invoke = pancake != value;
                 pancake = value;
-                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Pancake"));
+                if (invoke)
+                {
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Pancake"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
             }
         }
 

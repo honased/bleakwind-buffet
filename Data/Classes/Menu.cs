@@ -1,4 +1,10 @@
-﻿using BleakwindBuffet.Data.Drinks;
+﻿/*
+ * Author: Eric Honas
+ * Class name: Menu.cs
+ * Purpose: Class used for representing the menu of all items.
+ */
+
+using BleakwindBuffet.Data.Drinks;
 using BleakwindBuffet.Data.Entrees;
 using BleakwindBuffet.Data.Enums;
 using BleakwindBuffet.Data.Interfaces;
@@ -7,10 +13,17 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BleakwindBuffet.Data
+namespace BleakwindBuffet.Data.Classes
 {
+    /// <summary>
+    /// A class that represents a menu and allows for the retrieval of all items.
+    /// </summary>
     public static class Menu
     {
+        /// <summary>
+        /// Get all entrees on the menu.
+        /// </summary>
+        /// <returns>Each entree as an IOrderItem.</returns>
         public static IEnumerable<IOrderItem> Entrees()
         {
             yield return new BriarheartBurger();
@@ -22,6 +35,10 @@ namespace BleakwindBuffet.Data
             yield return new ThugsTBone();
         }
 
+        /// <summary>
+        /// Get all drinks on the menu.
+        /// </summary>
+        /// <returns>Each drink as an IOrderItem.</returns>
         public static IEnumerable<IOrderItem> Drinks()
         {
             foreach(Drink drink in GetAllDrinkSizes<AretinoAppleJuice>())
@@ -87,6 +104,10 @@ namespace BleakwindBuffet.Data
             }
         }
 
+        /// <summary>
+        /// Gets all sides on the menu.
+        /// </summary>
+        /// <returns>Each side as an IOrderItem.</returns>
         public static IEnumerable<IOrderItem> Sides()
         {
             foreach(Side side in GetAllSideSizes<DragonbornWaffleFries>())
@@ -110,6 +131,10 @@ namespace BleakwindBuffet.Data
             }
         }
 
+        /// <summary>
+        /// Gets every item on the menu.
+        /// </summary>
+        /// <returns>Every item as an IOrderItem.</returns>
         public static IEnumerable<IOrderItem> FullMenu()
         {
             foreach(Entree e in Entrees())
@@ -128,6 +153,11 @@ namespace BleakwindBuffet.Data
             }
         }
 
+        /// <summary>
+        /// A helper method that returns the given drink type as the different sizes.
+        /// </summary>
+        /// <typeparam name="T">The type of drink.</typeparam>
+        /// <returns>The type of drink in each size.</returns>
         private static IEnumerable<T> GetAllDrinkSizes<T>() where T : Drink, new()
         {
             T drinkS = new T();
@@ -143,6 +173,11 @@ namespace BleakwindBuffet.Data
             yield return drinkL;
         }
 
+        /// <summary>
+        /// A helper method that returns the given side type as the different sizes.
+        /// </summary>
+        /// <typeparam name="T">The type of side.</typeparam>
+        /// <returns>The type of side in each size.</returns>
         private static IEnumerable<T> GetAllSideSizes<T>() where T : Side, new()
         {
             T sideS = new T();

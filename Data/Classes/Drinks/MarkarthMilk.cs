@@ -37,7 +37,11 @@ namespace BleakwindBuffet.Data.Drinks
             {
                 bool invoke = ice != value;
                 ice = value;
-                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ice"));
+                if (invoke)
+                {
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ice"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
             }
         }
 
@@ -54,7 +58,13 @@ namespace BleakwindBuffet.Data.Drinks
             {
                 bool invoke = size != value;
                 size = value;
-                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Size"));
+                if (invoke)
+                {
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Size"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Price"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Calories"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
+                }
             }
         }
 

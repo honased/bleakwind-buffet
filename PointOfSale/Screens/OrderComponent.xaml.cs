@@ -1,9 +1,10 @@
 ﻿/*
  * Author: Eric Honas
- * Class name: Order.xaml.cs
+ * Class name: OrderComponent.xaml.cs
  * Purpose: A component used for displaying all properties and actions relating to the current order.
  */
 
+using BleakwindBuffet.Data.Classes;
 using BleakwindBuffet.Data.Interfaces;
 using PointOfSale.Interfaces;
 using PointOfSale.Screens.Menus;
@@ -15,7 +16,7 @@ namespace PointOfSale.Screens
     /// <summary>
     /// A class that allows for users to view the order and add customized items to the order.
     /// </summary>
-    public partial class Order : UserControl
+    public partial class OrderComponent : UserControl
     {
         /// <summary>
         /// The information component of the order containing properties such as the current items and total amount.
@@ -25,34 +26,46 @@ namespace PointOfSale.Screens
         /// <summary>
         /// Creates a new order component.
         /// </summary>
-        public Order()
+        public OrderComponent()
         {
             InitializeComponent();
 
             screenContainer.Child = new MenuSelectionScreen() { OrderComponent = this };
-
-            orderInformation = new OrderInformation();
-
+            orderInformation = new OrderInformation() { OrderComponent = this };
             orderInfoContainer.Child = orderInformation;
+            DataContext = new Order();
         }
 
         /// <summary>
         /// Changes it's main screen to a new given menu <paramref name="screen"/>. The order information screen is left alone.
         /// </summary>
         /// <param name="screen">The new screen for the Order components main view.</param>
-        public void ChangeScreen(IMenuScreen screen)
+        public void ChangeScreen(UserControl screen)
         {
-            screen.OrderComponent = this;
-            screenContainer.Child = (UIElement)screen;
+            if(screen is IMenuScreen menu) menu.OrderComponent = this;
+            screenContainer.Child = screen;
         }
 
         /// <summary>
-        /// Adds a new <paramref name="item"/> to the order and updates the order information component.
+        /// Cancels and starts a new order.
         /// </summary>
-        /// <param name="item">The item to add to the order.</param>
-        public void AddItem(IOrderItem item)
+        /// <param name="sender">The button that was clicked.</param>
+        /// <param name="e">The event arguments.</param>
+        private void CancelOrderClicked(object sender, RoutedEventArgs e)
         {
-            orderInformation.AddItem(item);
+            DataContext = new Order();
+            ChangeScreen(new MenuSelectionScreen());
+        }
+
+        /// <summary>
+        /// Starts a new order for the POS.
+        /// </summary>
+        /// <param name="sender">The button that was clicked.</param>
+        /// <param name="e">The event arguments.</param>
+        private void NewOrderClicked(object sender, RoutedEventArgs e)
+        {
+            DataContext = new Order();
+            ChangeScreen(new MenuSelectionScreen());
         }
     }
 }

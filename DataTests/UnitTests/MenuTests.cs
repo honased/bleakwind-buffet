@@ -9,6 +9,7 @@ using BleakwindBuffet.Data.Entrees;
 using BleakwindBuffet.Data.Drinks;
 using BleakwindBuffet.Data.Sides;
 using BleakwindBuffet.Data.Enums;
+using BleakwindBuffet.Data.Classes;
 
 namespace BleakwindBuffet.DataTests.UnitTests
 {

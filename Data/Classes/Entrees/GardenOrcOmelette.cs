@@ -39,7 +39,11 @@ namespace BleakwindBuffet.Data.Entrees
             {
                 bool invoke = broccoli != value;
                 broccoli = value;
-                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Broccoli"));
+                if (invoke)
+                {
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Broccoli"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
             }
         }
 
@@ -56,7 +60,11 @@ namespace BleakwindBuffet.Data.Entrees
             {
                 bool invoke = mushrooms != value;
                 mushrooms = value;
-                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Mushrooms"));
+                if (invoke)
+                {
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Mushrooms"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
             }
         }
 
@@ -73,7 +81,11 @@ namespace BleakwindBuffet.Data.Entrees
             {
                 bool invoke = tomato != value;
                 tomato = value;
-                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tomato"));
+                if (invoke)
+                {
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Tomato"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
             }
         }
 
@@ -90,7 +102,11 @@ namespace BleakwindBuffet.Data.Entrees
             {
                 bool invoke = cheddar != value;
                 cheddar = value;
-                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Cheddar"));
+                if (invoke)
+                {
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Cheddar"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
             }
         }
 

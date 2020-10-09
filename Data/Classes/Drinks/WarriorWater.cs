@@ -38,7 +38,11 @@ namespace BleakwindBuffet.Data.Drinks
             {
                 bool invoke = ice != value;
                 ice = value;
-                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ice"));
+                if (invoke)
+                {
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Ice"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
             }
         }
 
@@ -55,7 +59,11 @@ namespace BleakwindBuffet.Data.Drinks
             {
                 bool invoke = lemon != value;
                 lemon = value;
-                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Lemon"));
+                if (invoke)
+                {
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Lemon"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
+                }
             }
         }
 
@@ -72,16 +80,19 @@ namespace BleakwindBuffet.Data.Drinks
             {
                 bool invoke = size != value;
                 size = value;
-                if (invoke) PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Size"));
+                if (invoke)
+                {
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Size"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Price"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Calories"));
+                    PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Name"));
+                }
             }
         }
 
         /// <summary>
         /// The price of the drink.
         /// </summary>
-        /// <exception cref="System.NotImplementedException">
-        /// Thrown if the price for the size is not known.
-        /// </exception>
         public override double Price
         {
             get
@@ -93,9 +104,6 @@ namespace BleakwindBuffet.Data.Drinks
         /// <summary>
         /// The calories of the drink.
         /// </summary>
-        /// <exception cref="System.NotImplementedException">
-        /// Thrown if the calories for the size is not known.
-        /// </exception>
         public override uint Calories
         {
             get
