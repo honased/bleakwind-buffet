@@ -3,6 +3,7 @@ using BleakwindBuffet.Data.Drinks;
 using BleakwindBuffet.Data.Enums;
 using BleakwindBuffet.Data.Interfaces;
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
 using System.ComponentModel;
@@ -59,11 +60,11 @@ namespace BleakwindBuffet.DataTests.UnitTests
         }
 
         [Fact]
-        public void IsSynchronizedIsTrueByDefault()
+        public void IsSynchronizedIsFalseByDefault()
         {
             var order = new Order();
 
-            Assert.True(order.IsSynchronized);
+            Assert.False(order.IsSynchronized);
         }
 
         [Fact]
@@ -337,6 +338,30 @@ namespace BleakwindBuffet.DataTests.UnitTests
             order.SalesTaxRate = .49;
 
             Assert.Equal(.49, order.SalesTaxRate);
+        }
+
+        [Fact]
+        public void ShouldBeAssignableFromICollection()
+        {
+            var order = new Order();
+
+            Assert.IsAssignableFrom<ICollection>(order);
+        }
+
+        [Fact]
+        public void ShouldBeAssignableFromINotifyCollectionChanged()
+        {
+            var order = new Order();
+
+            Assert.IsAssignableFrom<INotifyCollectionChanged>(order);
+        }
+
+        [Fact]
+        public void ShouldBeAssignableFromINotifyPropertyChanged()
+        {
+            var order = new Order();
+
+            Assert.IsAssignableFrom<INotifyPropertyChanged>(order);
         }
     }
 }

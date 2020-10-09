@@ -2,6 +2,7 @@
 using BleakwindBuffet.Data.Drinks;
 using BleakwindBuffet.Data.Entrees;
 using BleakwindBuffet.Data.Enums;
+using BleakwindBuffet.Data.Interfaces;
 using BleakwindBuffet.Data.Sides;
 using System;
 using System.Collections.Generic;
@@ -417,6 +418,14 @@ namespace BleakwindBuffet.DataTests.UnitTests
                 item => { Assert.Equal("Medium Dummy Drink", item); },
                 item => { Assert.Equal("Small Dummy Side", item); }
             );
+        }
+
+        [Fact]
+        public void ShouldBeAssignableFromIOrderItem()
+        {
+            var combo = new Combo();
+
+            Assert.IsAssignableFrom<IOrderItem>(combo);
         }
     }
 }
