@@ -11,6 +11,12 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Reference Include="RoundRegister">
+      <HintPath>RoundRegister.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+
+  <ItemGroup>
     <Compile Update="Screens\MenuSelection\Entrees\BriarheartBurgerCustomization - Copy %282%29.xaml.cs">
       <SubType>Code</SubType>
       <DependentUpon>BriarheartBurgerCustomization.xaml.cs</DependentUpon>
