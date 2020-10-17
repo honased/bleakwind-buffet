@@ -8,6 +8,7 @@ using BleakwindBuffet.Data.Classes;
 using BleakwindBuffet.Data.Interfaces;
 using PointOfSale.Interfaces;
 using PointOfSale.Screens.Menus;
+using PointOfSale.Screens.Payment;
 using System.Windows;
 using System.Windows.Controls;
 
@@ -62,10 +63,18 @@ namespace PointOfSale.Screens
         /// </summary>
         /// <param name="sender">The button that was clicked.</param>
         /// <param name="e">The event arguments.</param>
-        private void NewOrderClicked(object sender, RoutedEventArgs e)
+        private void CompleteOrderClicked(object sender, RoutedEventArgs e)
         {
-            DataContext = new Order();
-            ChangeScreen(new MenuSelectionScreen());
+            ChangeScreen(new PaymentOptionsComponent());
+            CollapseButtons(true);
+        }
+
+        public void CollapseButtons(bool yes)
+        {
+            foreach (UIElement ui in buttonsGrid.Children)
+            {
+                ui.Visibility = (yes) ? Visibility.Collapsed : Visibility.Visible;
+            }
         }
     }
 }

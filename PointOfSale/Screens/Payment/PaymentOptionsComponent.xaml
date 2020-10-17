@@ -1,4 +1,4 @@
-﻿<UserControl x:Class="PointOfSale.Screens.PaymentOptionsComponent"
+﻿<UserControl x:Class="PointOfSale.Screens.Payment.PaymentOptionsComponent"
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
@@ -16,7 +16,7 @@
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
-            <ColumnDefinition Width="0.35*"/>
+            <ColumnDefinition/>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
@@ -27,9 +27,10 @@
 
         <TextBlock Grid.ColumnSpan="3" HorizontalAlignment="Center" VerticalAlignment="Center" FontSize="40" FontWeight="Bold">Choose Payment Method</TextBlock>
         
-        <Button Grid.Row="1">Cash</Button>
-        <Button Grid.Column="2" Grid.Row="1">Credit/Debit</Button>
+        <Button Grid.Row="1" Click="PayWithCash">Cash</Button>
+        <Button Grid.Column="1" Grid.Row="1" Click="ChargeCard">Credit</Button>
+        <Button Grid.Column="2" Grid.Row="1" Click="ChargeCard">Debit</Button>
 
-        <Button Grid.Row="2" Grid.ColumnSpan="3" MaxHeight="60" VerticalAlignment="Bottom" >Return to Order</Button>
+        <Button Grid.Row="2" Grid.ColumnSpan="3" MaxHeight="60" VerticalAlignment="Bottom" Click="ReturnClicked">Return to Order</Button>
     </Grid>
 </UserControl>

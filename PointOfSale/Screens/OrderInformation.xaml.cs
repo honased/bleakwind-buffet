@@ -14,6 +14,7 @@ using PointOfSale.Screens.Menus;
 using PointOfSale.Screens.Menus.Drinks;
 using PointOfSale.Screens.Menus.Entrees;
 using PointOfSale.Screens.Menus.Sides;
+using PointOfSale.Screens.Payment;
 using System;
 using System.Windows;
 using System.Windows.Controls;
@@ -46,6 +47,11 @@ namespace PointOfSale.Screens
             {
                 if (listBox.SelectedItem == null) return;
 
+                if(OrderComponent.screenContainer.Child is CashPaymentComponent cashPayment)
+                {
+                    cashPayment.Cleanup();
+                }
+
                 ItemModification customization = new ItemModification();
 
                 CustomizationScreen screen = Helper.GetCustomizationScreen(listBox.SelectedItem as IOrderItem, out string text);
@@ -54,6 +60,8 @@ namespace PointOfSale.Screens
                 customization.customizationContainer.Child = screen;
                 OrderComponent.ChangeScreen(customization);
                 listBox.SelectedItem = null;
+
+                OrderComponent.CollapseButtons(false);
             }
         }
 

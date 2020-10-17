@@ -221,7 +221,7 @@ namespace BleakwindBuffet.Data.Entrees
         }
 
         /// <summary>
-        /// Special instructions for how to prepare the drink.
+        /// Special instructions for how to prepare the entree.
         /// </summary>
         public override List<string> SpecialInstructions
         {

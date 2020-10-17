@@ -13,6 +13,7 @@ using PointOfSale.Screens.Menus;
 using PointOfSale.Screens.Menus.Drinks;
 using PointOfSale.Screens.Menus.Entrees;
 using PointOfSale.Screens.Menus.Sides;
+using RoundRegister;
 using System;
 using System.Collections.Generic;
 using System.Text;
@@ -81,6 +82,84 @@ namespace PointOfSale
             if (parent is T) return parent as T;
 
             return GetParent<T>(parent);
+        }
+
+        /// <summary>
+        /// Prints the details of the <paramref name="order"/> onto a reciept including the
+        /// order number, date, each item with it's instructions, the price, payment
+        /// method, and change owed.
+        /// </summary>
+        /// <param name="order">The order that was purchased.</param>
+        /// <param name="card">If the user paid with cash or card</param>
+        /// <param name="change">The amount of change given to the customer.</param>
+        public static void PrintReciept(this Order order, bool card, double change)
+        {
+            RecieptPrinter.PrintLine($"Order #{order.Number}");
+            RecieptPrinter.PrintLine(DateTime.Now.ToString());
+            RecieptPrinter.PrintLine("");
+
+            foreach (IOrderItem item in order)
+            {
+                StringBuilder name = new StringBuilder(item.Name);
+                if (!RightAlign(name, String.Format("${0:0.00}", item.Price))) throw new Exception();
+
+                RecieptPrinter.PrintLine(name.ToString());
+
+                foreach(string instruction in item.SpecialInstructions)
+                {
+                    if(!instruction.Contains(" - ")) RecieptPrinter.PrintLine($" - {instruction}");
+                    else RecieptPrinter.PrintLine($"   {instruction}");
+                }
+            }
+
+            RecieptPrinter.PrintLine("");
+
+            StringBuilder aligner = new StringBuilder();
+            aligner.Append("Subtotal:");
+            RightAlign(aligner, String.Format("${0:0.00}", order.Subtotal));
+            RecieptPrinter.PrintLine(aligner.ToString());
+
+            aligner.Clear();
+            aligner.Append("Tax:");
+            RightAlign(aligner, String.Format("${0:0.00}", order.Tax));
+            RecieptPrinter.PrintLine(aligner.ToString());
+
+            aligner.Clear();
+            aligner.Append("Total:");
+            RightAlign(aligner, String.Format("${0:0.00}", order.Total));
+            RecieptPrinter.PrintLine(aligner.ToString());
+
+            RecieptPrinter.PrintLine("");
+            RecieptPrinter.PrintLine("Payment Method: " + ((card) ? "Card" : "Cash"));
+            RecieptPrinter.PrintLine(String.Format("Change Owed: ${0:0.00}", change));
+
+            RecieptPrinter.CutTape();
+        }
+
+        /// <summary>
+        /// Given the <paramref name="sb"/>, the method attempts to append
+        /// the given <paramref name="text"/> onto the StringBuilder while
+        /// right aligning it so that it will always end at the 40 char mark.
+        /// If it is impossible to do so, the method will return false. Otherwise,
+        /// it will return true.
+        /// </summary>
+        /// <param name="sb">The stringbuild with the original text.</param>
+        /// <param name="text">The text to be appended and right aligned.</param>
+        /// <returns>If the operation was successful or not.</returns>
+        private static bool RightAlign(StringBuilder sb, string text)
+        {
+            if (sb.Length + text.Length >= 40) return false;
+
+            int target = 40 - text.Length - sb.Length;
+
+            for(int i = 0; i < target; i++)
+            {
+                sb.Append(" ");
+            }
+
+            sb.Append(text);
+
+            return true;
         }
     }
 }

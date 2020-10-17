@@ -16,14 +16,14 @@
         </Border>
 
         <DockPanel>
-            <Grid DockPanel.Dock="Bottom">
+            <Grid Name="buttonsGrid" DockPanel.Dock="Bottom">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition/>
                     <ColumnDefinition/>
                 </Grid.ColumnDefinitions>
 
                 <Button Margin="5" FontSize="20" Click="CancelOrderClicked">Cancel Order</Button>
-                <Button Grid.Column="1" Margin="5" FontSize="20" Click="NewOrderClicked">New Order</Button>
+                <Button Grid.Column="1" Margin="5" FontSize="20" Click="CompleteOrderClicked">Complete Order</Button>
             </Grid>
             <Border Name = "screenContainer" BorderBrush="Silver" BorderThickness="1" CornerRadius="8" Grid.Column="0" Grid.Row="0" Margin="5"/>
         </DockPanel>

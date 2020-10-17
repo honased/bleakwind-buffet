@@ -27,6 +27,10 @@ namespace BleakwindBuffet.Data.Classes
         private Drink drink;
         private Side side;
 
+        /// <summary>
+        /// Creates a new combo that defaults to having a Briarheart Burger,
+        /// Sailor Soda, and Dragonborn Waffle Fries.
+        /// </summary>
         public Combo()
         {
             entree = new BriarheartBurger();
@@ -38,6 +42,9 @@ namespace BleakwindBuffet.Data.Classes
             side.PropertyChanged += ItemChanged;
         }
 
+        /// <summary>
+        /// The entree in the combo.
+        /// </summary>
         public Entree Entree
         {
             get
@@ -61,6 +68,9 @@ namespace BleakwindBuffet.Data.Classes
             }
         }
 
+        /// <summary>
+        /// The side in the combo.
+        /// </summary>
         public Side Side
         {
             get
@@ -84,6 +94,9 @@ namespace BleakwindBuffet.Data.Classes
             }
         }
 
+        /// <summary>
+        /// The drink in the combo.
+        /// </summary>
         public Drink Drink
         {
             get
@@ -106,6 +119,9 @@ namespace BleakwindBuffet.Data.Classes
             }
         }
 
+        /// <summary>
+        /// The total price of the combo with the discount.
+        /// </summary>
         public double Price
         {
             get
@@ -119,6 +135,9 @@ namespace BleakwindBuffet.Data.Classes
             }
         }
 
+        /// <summary>
+        /// The amount of calories in the combo.
+        /// </summary>
         public uint Calories
         {
             get
@@ -132,6 +151,12 @@ namespace BleakwindBuffet.Data.Classes
             }
         }
 
+        /// <summary>
+        /// Method that notifies the combo's specific properties based on the item in the combo 
+        /// that was modified.
+        /// </summary>
+        /// <param name="sender">The item that was changed.</param>
+        /// <param name="e">The event arguments.</param>
         private void ItemChanged(object sender, PropertyChangedEventArgs e)
         {
             if (e.PropertyName == "Price") PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("Price"));
@@ -139,6 +164,9 @@ namespace BleakwindBuffet.Data.Classes
             if (e.PropertyName == "SpecialInstructions" || e.PropertyName == "Name") PropertyChanged?.Invoke(this, new PropertyChangedEventArgs("SpecialInstructions"));
         }
 
+        /// <summary>
+        /// Special instructions forhow to prepare the combo.
+        /// </summary>
         public List<string> SpecialInstructions
         {
             get
@@ -167,8 +195,15 @@ namespace BleakwindBuffet.Data.Classes
             }
         }
 
+        /// <summary>
+        /// The name of the combo.
+        /// </summary>
         public string Name => this.ToString();
 
+        /// <summary>
+        /// Returns the nicely formatted name of the combo.
+        /// </summary>
+        /// <returns>The name of the combo as a string.</returns>
         public override string ToString()
         {
             return "Combo Deal";
