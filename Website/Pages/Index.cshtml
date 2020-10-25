@@ -3,8 +3,40 @@
 @{
     ViewData["Title"] = "Home page";
 }
+@using BleakwindBuffet.Data.Entrees;
+@using BleakwindBuffet.Data.Classes;
 
 <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <h1 class="display-4">Bleakwind Buffet</h1>
+    <p>
+        We at Bleakwind Buffet are proud to bring you authentic fantasy meals straight from the world of Skyrim. 
+        Shake the blood off your sword and sake your thirst with one of our old-fashioned sailor sodas. 
+        Hack into a Smokehouse Skeleton with your dagger. Or vanquish the the mighty Thalmor Triple Burger! 
+        You’ve had a hard adventure and earned your loot, so spend it with us!.
+    </p>
+</div>
+
+<div class="menu-category">
+    <div>
+        <h2>Entrees</h2>
+        @foreach(Entree entree in Menu.Entrees())
+        {
+            <div class="menu-item">
+                <div>
+                    <p>Name</p>
+                    <p>Price</p>
+                </div>
+                <div>
+                    <p>@entree.Name</p>
+                    <p>@entree.Price</p>
+                </div>
+            </div>
+        }
+    </div>
+    <div>
+        <h2>Drinks</h2>
+    </div>
+    <div>
+        <h2>Sides</h2>
+    </div>
 </div>
