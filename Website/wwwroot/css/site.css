@@ -77,11 +77,12 @@ body {
 .menu-category {
     display: flex;
     flex-direction: row;
-    justify-content: space-around;
+    justify-content: space-evenly;
     border: 1px solid black;
     text-align: center;
     margin: 0;
     width: 100%;
+    flex-grow: 1;
 }
 
 .menu-item {
@@ -92,4 +93,13 @@ body {
     margin: 0;
     width: 100%;
     border: 1px solid black;
+}
+
+.menu-item > div {
+    flex-grow: 1;
+}
+
+.menu-category > div {
+    border: 1px solid black;
+    flex-grow: 1;
 }

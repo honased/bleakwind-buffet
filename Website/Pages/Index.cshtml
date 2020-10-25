@@ -25,16 +25,33 @@
                 <div>
                     <p>Name</p>
                     <p>Price</p>
+                    <p>Calories</p>
                 </div>
                 <div>
                     <p>@entree.Name</p>
                     <p>@entree.Price</p>
+                    <p>@entree.Calories</p>
                 </div>
             </div>
         }
     </div>
     <div>
         <h2>Drinks</h2>
+        @foreach (BleakwindBuffet.Data.Drinks.Drink drink in Menu.Drinks())
+        {
+            <div class="menu-item">
+                <div>
+                    <p>Name</p>
+                    <p>Price</p>
+                    <p>Calories</p>
+                </div>
+                <div>
+                    <p>@drink.Name</p>
+                    <p>@drink.Price</p>
+                    <p>@drink.Calories</p>
+                </div>
+            </div>
+        }
     </div>
     <div>
         <h2>Sides</h2>
