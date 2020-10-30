@@ -3,57 +3,108 @@
 @{
     ViewData["Title"] = "Home page";
 }
+@using BleakwindBuffet.Data.Sides;
 @using BleakwindBuffet.Data.Entrees;
-@using BleakwindBuffet.Data.Classes;
+@using BleakwindBuffet.Data.Drinks;
 
 <div class="text-center">
     <h1 class="display-4">Bleakwind Buffet</h1>
     <p>
-        We at Bleakwind Buffet are proud to bring you authentic fantasy meals straight from the world of Skyrim. 
-        Shake the blood off your sword and sake your thirst with one of our old-fashioned sailor sodas. 
-        Hack into a Smokehouse Skeleton with your dagger. Or vanquish the the mighty Thalmor Triple Burger! 
-        You’ve had a hard adventure and earned your loot, so spend it with us!.
+        We at Bleakwind Buffet are proud to bring you authentic fantasy meals straight from the world of Skyrim.
+        Shake the blood off your sword and sake your thirst with one of our old-fashioned sailor sodas.
+        Hack into a Smokehouse Skeleton with your dagger. Or vanquish the the mighty Thalmor Triple Burger!
+        You’ve had a hard adventure and earned your loot, so spend it with us!
     </p>
 </div>
 
 <div class="menu-category">
     <div>
         <h2>Entrees</h2>
-        @foreach(Entree entree in Menu.Entrees())
+        @foreach (Entree entree in ViewData.Model.Entrees)
         {
             <div class="menu-item">
-                <div>
-                    <p>Name</p>
-                    <p>Price</p>
-                    <p>Calories</p>
-                </div>
-                <div>
-                    <p>@entree.Name</p>
-                    <p>@entree.Price</p>
-                    <p>@entree.Calories</p>
+                <div class="menu-item-name">@entree.Name</div>
+                <div class="menu-grid">
+                    <div>Price</div>
+                    <div class="menu-prop-right">@entree.Price.ToString("C")</div>
+                    <div>Calories</div>
+                    <div class="menu-prop-right">@entree.Calories</div>
                 </div>
             </div>
         }
     </div>
     <div>
         <h2>Drinks</h2>
-        @foreach (BleakwindBuffet.Data.Drinks.Drink drink in Menu.Drinks())
-        {
-            <div class="menu-item">
-                <div>
-                    <p>Name</p>
-                    <p>Price</p>
-                    <p>Calories</p>
+        @{
+            Drink oldDrink = null;
+            int count = 0;
+            @foreach (Drink drink in ViewData.Model.Drinks)
+            {
+                <div class="menu-item">
+                    @if (oldDrink == null || !oldDrink.GetType().Equals(drink.GetType()))
+                    {
+                        string drinkName = drink.Name.Replace($"{drink.Size}", "");
+                        if (drink is SailorSoda) drinkName = "Sailor Soda";
+                        <div class="menu-item-name">@drinkName</div>
+                        oldDrink = drink;
+                        count = 0;
+                    }
+                    @if (count++ < 3)
+                    {
+                        <div class="menu-item-size">@String.Format($"{drink.Size}")</div>
+                        <div class="menu-grid">
+                            <div>Price</div>
+                            <div class="menu-prop-right">@drink.Price.ToString("C")</div>
+                            <div>Calories</div>
+                            <div class="menu-prop-right">@drink.Calories</div>
+                        </div>
+                    }
                 </div>
-                <div>
-                    <p>@drink.Name</p>
-                    <p>@drink.Price</p>
-                    <p>@drink.Calories</p>
-                </div>
-            </div>
+            }
         }
     </div>
     <div>
         <h2>Sides</h2>
+        @{
+            Side oldSide = null;
+            count = 0;
+            @foreach (Side side in ViewData.Model.Sides)
+            {
+                <div class="menu-item">
+                    @if (oldSide == null || !oldSide.GetType().Equals(side.GetType()))
+                    {
+                        <div class="menu-item-name">@side.Name.Replace($"{side.Size}", "")</div>
+                        oldSide = side;
+                        count = 0;
+                    }
+                    @if (count++ < 3)
+                    {
+                        <div class="menu-item-size">@String.Format($"{side.Size}")</div>
+                        <div class="menu-grid">
+                            <div>Price</div>
+                            <div class="menu-prop-right">@side.Price.ToString("C")</div>
+                            <div>Calories</div>
+                            <div class="menu-prop-right">@side.Calories</div>
+                        </div>
+                    }
+                </div>
+            }
+        }
+    </div>
+</div>
+
+<div class="menu-extra-info">
+    <div>
+        <h2>Bleakwind Combo</h2>
+        <p>For the best bang for your buck, combine any entree, side, and drink into a combo with a $1 discount. By Grabthars Hammer, what a savings! </p>
+    </div>
+    <div>
+        <h2>Soda Flavors</h2>
+        <ul id="soda-flavors">
+            @foreach (string flavor in Enum.GetNames(typeof(BleakwindBuffet.Data.Enums.SodaFlavor)))
+            {
+                <li>@flavor</li>
+            }
+        </ul>
     </div>
 </div>
