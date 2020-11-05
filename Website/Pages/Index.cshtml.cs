@@ -70,5 +70,15 @@ namespace Website.Pages
                 }
             }
         }
+
+        public string[] ItemTypes
+        {
+            get => new string[]
+            {
+                "Entree",
+                "Drink",
+                "Side"
+            };
+        }
     }
 }

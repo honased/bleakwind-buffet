@@ -17,81 +17,93 @@
     </p>
 </div>
 
-<div class="menu-category">
-    <div>
-        <h2>Entrees</h2>
-        @foreach (Entree entree in ViewData.Model.Entrees)
-        {
-            <div class="menu-item">
-                <div class="menu-item-name">@entree.Name</div>
-                <div class="menu-grid">
-                    <div>Price</div>
-                    <div class="menu-prop-right">@entree.Price.ToString("C")</div>
-                    <div>Calories</div>
-                    <div class="menu-prop-right">@entree.Calories</div>
-                </div>
-            </div>
-        }
+<form id="menu-db">
+
+    <div id="filters">
+        <label>Search For:</label>
+        <input type="text" name="SearchTerms"/>
+
+        <h4>Item Type</h4>
+
+        <input type="submit" value="Search"/>
     </div>
-    <div>
-        <h2>Drinks</h2>
-        @{
-            Drink oldDrink = null;
-            int count = 0;
-            @foreach (Drink drink in ViewData.Model.Drinks)
+
+    <div class="menu-category">
+        <div>
+            <h2>Entrees</h2>
+            @foreach (Entree entree in ViewData.Model.Entrees)
             {
                 <div class="menu-item">
-                    @if (oldDrink == null || !oldDrink.GetType().Equals(drink.GetType()))
-                    {
-                        string drinkName = drink.Name.Replace($"{drink.Size}", "");
-                        if (drink is SailorSoda) drinkName = "Sailor Soda";
-                        <div class="menu-item-name">@drinkName</div>
-                        oldDrink = drink;
-                        count = 0;
-                    }
-                    @if (count++ < 3)
-                    {
-                        <div class="menu-item-size">@String.Format($"{drink.Size}")</div>
-                        <div class="menu-grid">
-                            <div>Price</div>
-                            <div class="menu-prop-right">@drink.Price.ToString("C")</div>
-                            <div>Calories</div>
-                            <div class="menu-prop-right">@drink.Calories</div>
-                        </div>
-                    }
+                    <div class="menu-item-name">@entree.Name</div>
+                    <div class="menu-grid">
+                        <div>Price</div>
+                        <div class="menu-prop-right">@entree.Price.ToString("C")</div>
+                        <div>Calories</div>
+                        <div class="menu-prop-right">@entree.Calories</div>
+                    </div>
                 </div>
             }
-        }
-    </div>
-    <div>
-        <h2>Sides</h2>
-        @{
-            Side oldSide = null;
-            count = 0;
-            @foreach (Side side in ViewData.Model.Sides)
-            {
-                <div class="menu-item">
-                    @if (oldSide == null || !oldSide.GetType().Equals(side.GetType()))
-                    {
-                        <div class="menu-item-name">@side.Name.Replace($"{side.Size}", "")</div>
-                        oldSide = side;
-                        count = 0;
-                    }
-                    @if (count++ < 3)
-                    {
-                        <div class="menu-item-size">@String.Format($"{side.Size}")</div>
-                        <div class="menu-grid">
-                            <div>Price</div>
-                            <div class="menu-prop-right">@side.Price.ToString("C")</div>
-                            <div>Calories</div>
-                            <div class="menu-prop-right">@side.Calories</div>
-                        </div>
-                    }
-                </div>
+        </div>
+        <div>
+            <h2>Drinks</h2>
+            @{
+                Drink oldDrink = null;
+                int count = 0;
+                @foreach (Drink drink in ViewData.Model.Drinks)
+                {
+                    <div class="menu-item">
+                        @if (oldDrink == null || !oldDrink.GetType().Equals(drink.GetType()))
+                        {
+                            string drinkName = drink.Name.Replace($"{drink.Size}", "");
+                            if (drink is SailorSoda) drinkName = "Sailor Soda";
+                            <div class="menu-item-name">@drinkName</div>
+                            oldDrink = drink;
+                            count = 0;
+                        }
+                        @if (count++ < 3)
+                        {
+                            <div class="menu-item-size">@String.Format($"{drink.Size}")</div>
+                            <div class="menu-grid">
+                                <div>Price</div>
+                                <div class="menu-prop-right">@drink.Price.ToString("C")</div>
+                                <div>Calories</div>
+                                <div class="menu-prop-right">@drink.Calories</div>
+                            </div>
+                        }
+                    </div>
+                }
             }
-        }
+        </div>
+        <div>
+            <h2>Sides</h2>
+            @{
+                Side oldSide = null;
+                count = 0;
+                @foreach (Side side in ViewData.Model.Sides)
+                {
+                    <div class="menu-item">
+                        @if (oldSide == null || !oldSide.GetType().Equals(side.GetType()))
+                        {
+                            <div class="menu-item-name">@side.Name.Replace($"{side.Size}", "")</div>
+                            oldSide = side;
+                            count = 0;
+                        }
+                        @if (count++ < 3)
+                        {
+                            <div class="menu-item-size">@String.Format($"{side.Size}")</div>
+                            <div class="menu-grid">
+                                <div>Price</div>
+                                <div class="menu-prop-right">@side.Price.ToString("C")</div>
+                                <div>Calories</div>
+                                <div class="menu-prop-right">@side.Calories</div>
+                            </div>
+                        }
+                    </div>
+                }
+            }
+        </div>
     </div>
-</div>
+</form>
 
 <div class="menu-extra-info">
     <div>

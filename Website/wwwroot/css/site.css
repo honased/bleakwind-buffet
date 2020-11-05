@@ -123,3 +123,16 @@ body {
 #soda-flavors > li {
     text-align: center;
 }
+
+form#menu-db {
+    display: grid;
+    grid-template-columns: 1fr 4fr;
+    grid-template-rows: auto;
+}
+
+#filters {
+    display: flex;
+    flex-direction: column;
+    margin-right: 5%;
+    margin-left: 5%;
+}
