@@ -1,6 +1,8 @@
 ﻿using BleakwindBuffet.Data.Classes;
 using BleakwindBuffet.Data.Drinks;
 using BleakwindBuffet.Data.Entrees;
+using BleakwindBuffet.Data.Enums;
+using BleakwindBuffet.Data.Interfaces;
 using BleakwindBuffet.Data.Sides;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using System;
@@ -25,6 +27,7 @@ namespace BleakwindBuffet.DataTests.UnitTests.WebsiteTests
         public void EntreesShouldReturnAllMenuEntrees()
         {
             var model = new IndexModel(null);
+            model.MenuItems = Menu.FullMenu();
             List<Type> actual = new List<Type>();
             foreach(Entree e in Menu.Entrees())
             {
@@ -38,25 +41,97 @@ namespace BleakwindBuffet.DataTests.UnitTests.WebsiteTests
         }
 
         [Fact]
-        public void DrinksShouldReturnAllMenuEntrees()
+        public void ShouldHaveAllDrinksWithDuplicateSailorSodaStrippedOut()
         {
             var model = new IndexModel(null);
-            List<Type> actual = new List<Type>();
-            foreach (Drink d in Menu.Drinks())
-            {
-                actual.Add(d.GetType());
-            }
-            int index = 0;
-            foreach (Drink d in model.Drinks)
-            {
-                Assert.Equal(actual[index++], d.GetType());
-            }
+            model.MenuItems = Menu.FullMenu();
+            Assert.Collection<IOrderItem>(model.Drinks,
+                item =>
+                {
+                    Assert.IsType<AretinoAppleJuice>(item);
+                    Assert.Equal(Size.Small, (item as Drink).Size);
+                },
+                item =>
+                {
+                    Assert.IsType<AretinoAppleJuice>(item);
+                    Assert.Equal(Size.Medium, (item as Drink).Size);
+                },
+                item =>
+                {
+                    Assert.IsType<AretinoAppleJuice>(item);
+                    Assert.Equal(Size.Large, (item as Drink).Size);
+                },
+                item =>
+                {
+                    Assert.IsType<CandlehearthCoffee>(item);
+                    Assert.Equal(Size.Small, (item as Drink).Size);
+                },
+                item =>
+                {
+                    Assert.IsType<CandlehearthCoffee>(item);
+                    Assert.Equal(Size.Medium, (item as Drink).Size);
+                },
+                item =>
+                {
+                    Assert.IsType<CandlehearthCoffee>(item);
+                    Assert.Equal(Size.Large, (item as Drink).Size);
+                },
+                item =>
+                {
+                    Assert.IsType<MarkarthMilk>(item);
+                    Assert.Equal(Size.Small, (item as Drink).Size);
+                },
+                item =>
+                {
+                    Assert.IsType<MarkarthMilk>(item);
+                    Assert.Equal(Size.Medium, (item as Drink).Size);
+                },
+                item =>
+                {
+                    Assert.IsType<MarkarthMilk>(item);
+                    Assert.Equal(Size.Large, (item as Drink).Size);
+                },
+                item =>
+                {
+                    Assert.IsType<SailorSoda>(item);
+                    Assert.Equal(Size.Small, (item as Drink).Size);
+                    Assert.Equal(SodaFlavor.Blackberry, (item as SailorSoda).Flavor);
+                },
+                item =>
+                {
+                    Assert.IsType<SailorSoda>(item);
+                    Assert.Equal(Size.Medium, (item as Drink).Size);
+                    Assert.Equal(SodaFlavor.Blackberry, (item as SailorSoda).Flavor);
+                },
+                item =>
+                {
+                    Assert.IsType<SailorSoda>(item);
+                    Assert.Equal(Size.Large, (item as Drink).Size);
+                    Assert.Equal(SodaFlavor.Blackberry, (item as SailorSoda).Flavor);
+                },
+                item =>
+                {
+                    Assert.IsType<WarriorWater>(item);
+                    Assert.Equal(Size.Small, (item as Drink).Size);
+                },
+                item =>
+                {
+                    Assert.IsType<WarriorWater>(item);
+                    Assert.Equal(Size.Medium, (item as Drink).Size);
+                },
+                item =>
+                {
+                    Assert.IsType<WarriorWater>(item);
+                    Assert.Equal(Size.Large, (item as Drink).Size);
+                }
+            );
         }
 
         [Fact]
-        public void SidesShouldReturnAllMenuEntrees()
+        public void SidesShouldReturnAllMenuSides()
         {
             var model = new IndexModel(null);
+            model.MenuItems = Menu.FullMenu();
             List<Type> actual = new List<Type>();
             foreach (Side s in Menu.Sides())
             {

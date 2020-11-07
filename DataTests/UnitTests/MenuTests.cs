@@ -10,6 +10,8 @@ using BleakwindBuffet.Data.Drinks;
 using BleakwindBuffet.Data.Sides;
 using BleakwindBuffet.Data.Enums;
 using BleakwindBuffet.Data.Classes;
+using System.Linq;
+using Xunit.Extensions;
 
 namespace BleakwindBuffet.DataTests.UnitTests
 {
@@ -512,5 +514,198 @@ namespace BleakwindBuffet.DataTests.UnitTests
                 }
             );
         }
+
+        [Fact]
+        public void SearchShouldReturnInputtedListIfSearchTermsIsNull()
+        {
+            List<Type> actual = new List<Type>();
+            foreach(IOrderItem item in Menu.Search(Menu.FullMenu(), null))
+            {
+                actual.Add(item.GetType());
+            }
+            int index = 0;
+            foreach (IOrderItem i in Menu.FullMenu())
+            {
+                Assert.Equal(actual[index++], i.GetType());
+            }
+        }
+
+        [Fact]
+        public void SearchShouldReturnNothingIfNullIsPassed()
+        {
+            Assert.Null(Menu.Search(null, null));
+            Assert.Null(Menu.Search(null, "Test"));
+        }
+
+        [Theory]
+        [InlineData("A")]
+        [InlineData("ba")]
+        [InlineData("nn")]
+        [InlineData("burger")]
+        public void SearchShouldFilterOutProperly(string filter)
+        {
+            foreach(IOrderItem i in Menu.Search(Menu.FullMenu(), filter))
+            {
+                Assert.Contains(filter.ToLower(), i.Name.ToLower());
+            }
+        }
+
+        [Fact]
+        public void FilterCategoriesShouldReturnInputtedListIfCategoriesIsNullOrEmpty()
+        {
+            List<Type> actual = new List<Type>();
+            foreach (IOrderItem item in Menu.FilterByCategory(Menu.FullMenu(), null))
+            {
+                actual.Add(item.GetType());
+            }
+            int index = 0;
+            foreach (IOrderItem i in Menu.FullMenu())
+            {
+                Assert.Equal(actual[index++], i.GetType());
+            }
+
+            actual = new List<Type>();
+            foreach (IOrderItem item in Menu.FilterByCategory(Menu.FullMenu(), new List<string>()))
+            {
+                actual.Add(item.GetType());
+            }
+            index = 0;
+            foreach (IOrderItem i in Menu.FullMenu())
+            {
+                Assert.Equal(actual[index++], i.GetType());
+            }
+        }
+
+        [Fact]
+        public void CategoryFilterShouldReturnNothingIfNullIsPassed()
+        {
+            Assert.Null(Menu.FilterByCategory(null, null));
+            Assert.Null(Menu.FilterByCategory(null, new List<string>() { "hello", "World" }));
+        }
+
+        [Theory]
+        [InlineData(true, false, false)]
+        [InlineData(false, true, false)]
+        [InlineData(false, false, true)]
+        [InlineData(true, true, false)]
+        [InlineData(false, true, true)]
+        public void CategoryShouldFilterOutProperly(bool e, bool d, bool s)
+        {
+            List<string> categories = new List<string>();
+            if (e) categories.Add("Entree");
+            if (d) categories.Add("Drink");
+            if (s) categories.Add("Side");
+            foreach (IOrderItem i in Menu.FilterByCategory(Menu.FullMenu(), categories))
+            {
+                if (i is Entree) Assert.True(e);
+                if (i is Drink) Assert.True(d);
+                if (i is Side) Assert.True(s);
+            }
+        }
+
+        [Fact]
+        public void CaloriesFilterShouldReturnInputtedListIfMinAndMaxIsNull()
+        {
+            List<Type> actual = new List<Type>();
+            foreach (IOrderItem item in Menu.FilterByCalories(Menu.FullMenu(), null, null))
+            {
+                actual.Add(item.GetType());
+            }
+            int index = 0;
+            foreach (IOrderItem i in Menu.FullMenu())
+            {
+                Assert.Equal(actual[index++], i.GetType());
+            }
+        }
+
+        [Theory]
+        [InlineData(100)]
+        [InlineData(275)]
+        [InlineData(10)]
+        public void CaloriesFilterShouldOnlyFilterByMinIfMaxIsNull(int min)
+        {
+            foreach (IOrderItem item in Menu.FilterByCalories(Menu.FullMenu(), min, null))
+            {
+                Assert.True(item.Calories >= min);
+            }
+        }
+
+        [Theory]
+        [InlineData(500)]
+        [InlineData(275)]
+        [InlineData(10)]
+        public void CaloriesFilterShouldOnlyFilterByMaxIfMinIsNull(int max)
+        {
+            foreach (IOrderItem item in Menu.FilterByCalories(Menu.FullMenu(), null, max))
+            {
+                Assert.True(item.Calories <= max);
+            }
+        }
+
+        [Theory]
+        [InlineData(100, 500)]
+        [InlineData(0, 999)]
+        [InlineData(270, 320)]
+        public void CaloriesFilterShouldOnlyFilterByBothMaxAndMinIfBothValid(int min, int max)
+        {
+            foreach (IOrderItem item in Menu.FilterByCalories(Menu.FullMenu(), min, max))
+            {
+                Assert.True(item.Calories <= max);
+                Assert.True(item.Calories >= min);
+            }
+        }
+
+        [Fact]
+        public void PriceFilterShouldReturnInputtedListIfMinAndMaxIsNull()
+        {
+            List<Type> actual = new List<Type>();
+            foreach (IOrderItem item in Menu.FilterByPrice(Menu.FullMenu(), null, null))
+            {
+                actual.Add(item.GetType());
+            }
+            int index = 0;
+            foreach (IOrderItem i in Menu.FullMenu())
+            {
+                Assert.Equal(actual[index++], i.GetType());
+            }
+        }
+
+        [Theory]
+        [InlineData(0.58)]
+        [InlineData(5.4)]
+        [InlineData(20.0)]
+        public void PriceFilterShouldOnlyFilterByMinIfMaxIsNull(double min)
+        {
+            foreach (IOrderItem item in Menu.FilterByPrice(Menu.FullMenu(), min, null))
+            {
+                Assert.True(item.Price >= min);
+            }
+        }
+
+        [Theory]
+        [InlineData(9.4)]
+        [InlineData(2.84)]
+        [InlineData(1.04)]
+        public void PriceFilterShouldOnlyFilterByMaxIfMinIsNull(double max)
+        {
+            foreach (IOrderItem item in Menu.FilterByPrice(Menu.FullMenu(), null, max))
+            {
+                Assert.True(item.Price <= max);
+            }
+        }
+
+        [Theory]
+        [InlineData(0.5, 9.23)]
+        [InlineData(1.27, 4.88)]
+        [InlineData(6.7, 9.8)]
+        public void PriceFilterShouldOnlyFilterByBothMaxAndMinIfBothValid(double min, double max)
+        {
+            foreach (IOrderItem item in Menu.FilterByPrice(Menu.FullMenu(), min, max))
+            {
+                Assert.True(item.Price <= max);
+                Assert.True(item.Price >= min);
+            }
+        }
+
     }
 }

@@ -12,6 +12,7 @@ using BleakwindBuffet.Data.Classes;
 using BleakwindBuffet.Data.Drinks;
 using BleakwindBuffet.Data.Entrees;
 using BleakwindBuffet.Data.Enums;
+using BleakwindBuffet.Data.Interfaces;
 using BleakwindBuffet.Data.Sides;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
@@ -36,12 +37,9 @@ namespace Website.Pages
         }
 
         /// <summary>
-        /// A method that runs on a get request.
+        /// The menu items to display on the main page.
         /// </summary>
-        public void OnGet()
-        {
-
-        }
+        public IEnumerable<IOrderItem> MenuItems { get; set; }
 
         /// <summary>
         /// Gets all the entrees in the menu.
@@ -50,9 +48,9 @@ namespace Website.Pages
         {
             get
             {
-                foreach(Entree entree in Menu.Entrees())
+                foreach(IOrderItem item in MenuItems)
                 {
-                    yield return entree;
+                    if (item is Entree entree) yield return entree;
                 }
             }
         }
@@ -64,9 +62,30 @@ namespace Website.Pages
         {
             get
             {
-                foreach (Drink drink in Menu.Drinks())
+                bool usedSailorSmall = false, usedSailorMedium = false, usedSailorLarge = false;
+                foreach (IOrderItem item in MenuItems)
                 {
-                    yield return drink;
+                    if(item is SailorSoda ss)
+                    {
+                        if (ss.Size == Size.Small)
+                        {
+                            if(!usedSailorSmall) usedSailorSmall = true;
+                            else continue;
+                        }
+
+                        if (ss.Size == Size.Medium)
+                        {
+                            if (!usedSailorMedium) usedSailorMedium = true;
+                            else continue;
+                        }
+
+                        if (ss.Size == Size.Large)
+                        {
+                            if (!usedSailorLarge) usedSailorLarge = true;
+                            else continue;
+                        }
+                    }
+                    if (item is Drink drink) yield return drink;
                 }
             }
         }
@@ -78,9 +97,9 @@ namespace Website.Pages
         {
             get
             {
-                foreach (Side side in Menu.Sides())
+                foreach (IOrderItem item in MenuItems)
                 {
-                    yield return side;
+                    if (item is Side side) yield return side;
                 }
             }
         }
@@ -100,7 +119,10 @@ namespace Website.Pages
             }
         }
 
-        public string[] ItemTypes
+        /// <summary>
+        /// The different types a menu item can be.
+        /// </summary>
+        public string[] AllItemTypes
         {
             get => new string[]
             {
@@ -108,6 +130,54 @@ namespace Website.Pages
                 "Drink",
                 "Side"
             };
+        }
+
+        /// <summary>
+        /// The search terms for filtering.
+        /// </summary>
+        public string SearchTerms { get; set; }
+
+        /// <summary>
+        /// The item types for filtering.
+        /// </summary>
+        public string[] ItemTypes { get; set; }
+
+        /// <summary>
+        /// The minimum calories for filtering.
+        /// </summary>
+        public int? CaloriesMin { get; set; }
+
+        /// <summary>
+        /// The maximum calories for filtering.
+        /// </summary>
+        public int? CaloriesMax { get; set; }
+
+        /// <summary>
+        /// The minimum price for filtering.
+        /// </summary>
+        public double? PriceMin { get; set; }
+
+        /// <summary>
+        /// The maximum price for filtering.
+        /// </summary>
+        public double? PriceMax { get; set; }
+
+        /// <summary>
+        /// When called, filters the menu items and keeps the filters the same way.
+        /// </summary>
+        public void OnGet(string SearchTerms, string[] ItemTypes, int? CaloriesMin, int? CaloriesMax, double? PriceMin, double? PriceMax)
+        {
+            MenuItems = Menu.Search(Menu.FullMenu(), SearchTerms);
+            MenuItems = Menu.FilterByCategory(MenuItems, ItemTypes);
+            MenuItems = Menu.FilterByCalories(MenuItems, CaloriesMin, CaloriesMax);
+            MenuItems = Menu.FilterByPrice(MenuItems, PriceMin, PriceMax);
+
+            this.SearchTerms = SearchTerms;
+            this.ItemTypes = ItemTypes;
+            this.CaloriesMin = CaloriesMin;
+            this.CaloriesMax = CaloriesMax;
+            this.PriceMin = PriceMin;
+            this.PriceMax = PriceMax;
         }
     }
 }

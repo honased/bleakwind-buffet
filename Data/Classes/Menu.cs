@@ -11,6 +11,7 @@ using BleakwindBuffet.Data.Interfaces;
 using BleakwindBuffet.Data.Sides;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 
 namespace BleakwindBuffet.Data.Classes
@@ -20,6 +21,7 @@ namespace BleakwindBuffet.Data.Classes
     /// </summary>
     public static class Menu
     {
+
         /// <summary>
         /// Get all entrees on the menu.
         /// </summary>
@@ -191,6 +193,137 @@ namespace BleakwindBuffet.Data.Classes
             T sideL = new T();
             sideL.Size = Size.Large;
             yield return sideL;
+        }
+
+        /// <summary>
+        /// Filters the given <paramref name="items"/> by the given <paramref name="searchTerms"/>.
+        /// </summary>
+        /// <param name="items">The items to filter.</param>
+        /// <param name="searchTerms">The terms to use for filtering.</param>
+        /// <returns>The filtered items.</returns>
+        public static IEnumerable<IOrderItem> Search(IEnumerable<IOrderItem> items, string searchTerms)
+        {
+            List<IOrderItem> results = new List<IOrderItem>();
+
+            if (searchTerms == null) return items;
+            if (items == null) return null;
+
+            foreach(IOrderItem item in items)
+            {
+                string name = item.Name;
+                if (item is SailorSoda) name = "Sailor Soda";
+                if(name != null && name.ToLower().Contains(searchTerms.ToLower()))
+                {
+                    results.Add(item);
+                }
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Filters the given <paramref name="items"/> by what <paramref name="categories"/> are checked.
+        /// </summary>
+        /// <param name="items">The items to filter</param>
+        /// <param name="categories">The categories to use for filtering</param>
+        /// <returns>The filtered items</returns>
+        public static IEnumerable<IOrderItem> FilterByCategory(IEnumerable<IOrderItem> items, IEnumerable<string> categories)
+        {
+            List<IOrderItem> results = new List<IOrderItem>();
+
+            if (categories == null || categories.Count() == 0) return items;
+            if (items == null) return null;
+
+            foreach (IOrderItem item in items)
+            {
+                if (item is Entree && categories.Contains("Entree")) results.Add(item);
+                else if (item is Drink && categories.Contains("Drink")) results.Add(item);
+                else if (item is Side && categories.Contains("Side")) results.Add(item);
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Filters the given <paramref name="items"/> by checking if the calories fall in the bounds of 
+        /// <paramref name="min"/> and <paramref name="max"/>.
+        /// </summary>
+        /// <param name="items">The items to filter</param>
+        /// <param name="min">The minimum amount of calories</param>
+        /// <param name="max">The maximum amount of calories</param>
+        /// <returns>The filtered items</returns>
+        public static IEnumerable<IOrderItem> FilterByCalories(IEnumerable<IOrderItem> items, int? min, int? max)
+        {
+            if (min == null && max == null) return items;
+            if (items == null) return null;
+
+            List<IOrderItem> results = new List<IOrderItem>();
+
+            if(min == null)
+            {
+                foreach(IOrderItem item in items)
+                {
+                    if (item.Calories <= max) results.Add(item);
+                }
+                return results;
+            }
+
+            if(max == null)
+            {
+                foreach(IOrderItem item in items)
+                {
+                    if (item.Calories >= min) results.Add(item);
+                }
+                return results;
+            }
+
+            foreach(IOrderItem item in items)
+            {
+                if (item.Calories >= min && item.Calories <= max) results.Add(item);
+            }
+
+            return results;
+        }
+
+        /// <summary>
+        /// Filters the given <paramref name="items"/> by checking if the price fall in the bounds of 
+        /// <paramref name="min"/> and <paramref name="max"/>.
+        /// </summary>
+        /// <param name="items">The items to filter</param>
+        /// <param name="min">The minimum price</param>
+        /// <param name="max">The maximum price</param>
+        /// <returns>The filtered items</returns>
+        public static IEnumerable<IOrderItem> FilterByPrice(IEnumerable<IOrderItem> items, double? min, double? max)
+        {
+            if (min == null && max == null) return items;
+            if (items == null) return null;
+
+            List<IOrderItem> results = new List<IOrderItem>();
+
+            if (min == null)
+            {
+                foreach (IOrderItem item in items)
+                {
+                    if (item.Price <= max) results.Add(item);
+                }
+                return results;
+            }
+
+            if (max == null)
+            {
+                foreach (IOrderItem item in items)
+                {
+                    if (item.Price >= min) results.Add(item);
+                }
+                return results;
+            }
+
+            foreach (IOrderItem item in items)
+            {
+                if (item.Price >= min && item.Price <= max) results.Add(item);
+            }
+
+            return results;
         }
     }
 }
