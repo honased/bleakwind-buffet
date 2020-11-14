@@ -243,5 +243,12 @@ namespace BleakwindBuffet.DataTests.UnitTests.EntreeTests
         {
             Assert.IsAssignableFrom<INotifyPropertyChanged>(new BriarheartBurger());
         }
+
+        [Fact]
+        public void ShouldHaveCorrectDescription()
+        {
+            var bb = new BriarheartBurger();
+            Assert.Equal("Single patty burger on a brioche bun. Comes with ketchup, mustard, pickle, and cheese.", bb.Description);
+        }
     }
 }

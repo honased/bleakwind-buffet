@@ -203,22 +203,12 @@ namespace BleakwindBuffet.Data.Classes
         /// <returns>The filtered items.</returns>
         public static IEnumerable<IOrderItem> Search(IEnumerable<IOrderItem> items, string searchTerms)
         {
-            List<IOrderItem> results = new List<IOrderItem>();
-
             if (searchTerms == null) return items;
             if (items == null) return null;
 
-            foreach(IOrderItem item in items)
-            {
-                string name = item.Name;
-                if (item is SailorSoda) name = "Sailor Soda";
-                if(name != null && name.ToLower().Contains(searchTerms.ToLower()))
-                {
-                    results.Add(item);
-                }
-            }
+            string[] terms = searchTerms.ToLower().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries);
 
-            return results;
+            return items.Where(item => terms.Any(term => item.Name.ToLower().Contains(term) || item.Description.ToLower().Contains(term)));
         }
 
         /// <summary>
@@ -229,19 +219,11 @@ namespace BleakwindBuffet.Data.Classes
         /// <returns>The filtered items</returns>
         public static IEnumerable<IOrderItem> FilterByCategory(IEnumerable<IOrderItem> items, IEnumerable<string> categories)
         {
-            List<IOrderItem> results = new List<IOrderItem>();
-
             if (categories == null || categories.Count() == 0) return items;
             if (items == null) return null;
 
-            foreach (IOrderItem item in items)
-            {
-                if (item is Entree && categories.Contains("Entree")) results.Add(item);
-                else if (item is Drink && categories.Contains("Drink")) results.Add(item);
-                else if (item is Side && categories.Contains("Side")) results.Add(item);
-            }
-
-            return results;
+            return items.Where(item => (item is Entree && categories.Contains("Entree")) || (item is Drink && categories.Contains("Drink"))
+                                        || (item is Side && categories.Contains("Side")));
         }
 
         /// <summary>
@@ -257,32 +239,13 @@ namespace BleakwindBuffet.Data.Classes
             if (min == null && max == null) return items;
             if (items == null) return null;
 
-            List<IOrderItem> results = new List<IOrderItem>();
-
-            if(min == null)
+            var query = items;
+            if(min != null || max != null)
             {
-                foreach(IOrderItem item in items)
-                {
-                    if (item.Calories <= max) results.Add(item);
-                }
-                return results;
+                if (min != null) query = query.Where(item => item.Calories >= min);
+                if (max != null) query = query.Where(item => item.Calories <= max);
             }
-
-            if(max == null)
-            {
-                foreach(IOrderItem item in items)
-                {
-                    if (item.Calories >= min) results.Add(item);
-                }
-                return results;
-            }
-
-            foreach(IOrderItem item in items)
-            {
-                if (item.Calories >= min && item.Calories <= max) results.Add(item);
-            }
-
-            return results;
+            return query;
         }
 
         /// <summary>
@@ -298,32 +261,13 @@ namespace BleakwindBuffet.Data.Classes
             if (min == null && max == null) return items;
             if (items == null) return null;
 
-            List<IOrderItem> results = new List<IOrderItem>();
-
-            if (min == null)
+            var query = items;
+            if (min != null || max != null)
             {
-                foreach (IOrderItem item in items)
-                {
-                    if (item.Price <= max) results.Add(item);
-                }
-                return results;
+                if (min != null) query = query.Where(item => item.Price >= min);
+                if (max != null) query = query.Where(item => item.Price <= max);
             }
-
-            if (max == null)
-            {
-                foreach (IOrderItem item in items)
-                {
-                    if (item.Price >= min) results.Add(item);
-                }
-                return results;
-            }
-
-            foreach (IOrderItem item in items)
-            {
-                if (item.Price >= min && item.Price <= max) results.Add(item);
-            }
-
-            return results;
+            return query;
         }
     }
 }

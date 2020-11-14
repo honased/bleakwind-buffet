@@ -542,11 +542,23 @@ namespace BleakwindBuffet.DataTests.UnitTests
         [InlineData("ba")]
         [InlineData("nn")]
         [InlineData("burger")]
+        [InlineData("cake Bun")]
         public void SearchShouldFilterOutProperly(string filter)
         {
             foreach(IOrderItem i in Menu.Search(Menu.FullMenu(), filter))
             {
-                Assert.Contains(filter.ToLower(), i.Name.ToLower());
+                bool contains = false;
+
+                foreach(string word in filter.ToLower().Split(new char[] { ' ' }, StringSplitOptions.RemoveEmptyEntries))
+                {
+                    if(i.Name.ToLower().Contains(word) || i.Description.ToLower().Contains(word))
+                    {
+                        contains = true;
+                        break;
+                    }
+                }
+
+                Assert.True(contains);
             }
         }
 

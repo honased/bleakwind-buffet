@@ -38,5 +38,10 @@ namespace BleakwindBuffet.Data.Interfaces
         /// The name of the order item.
         /// </summary>
         string Name { get; }
+
+        /// <summary>
+        /// The description of the order item.
+        /// </summary>
+        string Description { get; }
     }
 }

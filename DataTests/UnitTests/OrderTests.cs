@@ -41,6 +41,8 @@ namespace BleakwindBuffet.DataTests.UnitTests
             {
                 PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(property));
             }
+
+            public override string Description => "A drink used for testing.";
         }
 
         [Fact]

@@ -197,5 +197,12 @@ namespace BleakwindBuffet.DataTests.UnitTests.DrinkTests
         {
             Assert.IsAssignableFrom<INotifyPropertyChanged>(new WarriorWater());
         }
+
+        [Fact]
+        public void ShouldHaveCorrectDescription()
+        {
+            var ww = new WarriorWater();
+            Assert.Equal("It’s water. Just water.", ww.Description);
+        }
     }
 }

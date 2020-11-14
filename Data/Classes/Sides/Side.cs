@@ -58,5 +58,10 @@ namespace BleakwindBuffet.Data.Sides
                 return ToString();
             }
         }
+
+        /// <summary>
+        /// The description of the item.
+        /// </summary>
+        public abstract string Description { get; }
     }
 }

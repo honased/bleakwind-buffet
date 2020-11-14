@@ -208,5 +208,10 @@ namespace BleakwindBuffet.Data.Classes
         {
             return "Combo Deal";
         }
+
+        /// <summary>
+        /// The description of the item.
+        /// </summary>
+        public string Description => "A combo that includes an entree, drink, and a side for 1$ off.";
     }
 }

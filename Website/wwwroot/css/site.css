@@ -149,3 +149,20 @@ form#menu-db {
 #filters > div {
     margin-bottom: 10px;
 }
+
+.menu-item-description {
+    font-style: italic;
+    font-size: 0.9rem;
+    margin-bottom: 10px;
+}
+
+@media (max-width: 490px)
+{
+    .menu-category {
+        grid-template-columns: 1fr;
+    }
+
+    form#menu-db {
+        grid-template-columns: 1fr;
+    }
+}

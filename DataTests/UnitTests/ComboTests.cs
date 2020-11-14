@@ -60,6 +60,8 @@ namespace BleakwindBuffet.DataTests.UnitTests
                     }
                 }
             }
+
+            public override string Description => "An entree used for testing.";
         }
 
         private class DummyDrink : Drink
@@ -127,6 +129,8 @@ namespace BleakwindBuffet.DataTests.UnitTests
             {
                 return $"{Size} Dummy Drink";
             }
+
+            public override string Description => "A drink used for testing.";
         }
 
         private class DummySide : Side
@@ -169,6 +173,8 @@ namespace BleakwindBuffet.DataTests.UnitTests
             {
                 return $"{Size} Dummy Side";
             }
+
+            public override string Description => "A side used for testing.";
         }
 
         [Fact]
@@ -426,6 +432,13 @@ namespace BleakwindBuffet.DataTests.UnitTests
             var combo = new Combo();
 
             Assert.IsAssignableFrom<IOrderItem>(combo);
+        }
+
+        [Fact]
+        public void ShouldHaveCorrectDescription()
+        {
+            var combo = new Combo();
+            Assert.Equal("A combo that includes an entree, drink, and a side for 1$ off.", combo.Description);
         }
     }
 }

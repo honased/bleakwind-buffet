@@ -123,5 +123,12 @@ namespace BleakwindBuffet.DataTests.UnitTests.SideTests
         {
             Assert.IsAssignableFrom<INotifyPropertyChanged>(new VokunSalad());
         }
+
+        [Fact]
+        public void ShouldHaveCorrectDescription()
+        {
+            var vs = new VokunSalad();
+            Assert.Equal("A seasonal fruit salad of mellons, berries, mango, grape, apple, and oranges.", vs.Description);
+        }
     }
 }
